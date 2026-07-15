@@ -1,0 +1,15 @@
+i want to create multi tool website using html, css, and javascript, 
+here i want professional advance  50 tools ideas for creating this multi tool website. 
+these tool should work propely without any API key so recommend according to that.Ok great. 
+Now Create A professional prompt for creating a multi tool website with all these tool integrated in the same website.
+Okay. Uh, so I want to create this website using HTML, CSS, and JavaScript only. And, um,
+I want all these thirty tools to be listed on the homepage itself, and there should be a hero menu in this website. 
+So the main navigation menu should be short, and, uh, only few items should be there in the main navigate... navigation menu. 
+Um, and try to add some categories in the hero menu. And, uh, below the categories, add those particular tool names. 
+so that from home page, everyone can visit the particular tools they want to use. Now I also need pages like contact us,
+about us, privacy policy, and disclaimer. And I also need good amount of content in every page of this website. 
+That means I want you to create content according to the particular keyword, and the keyword will be the tool name itself. 
+And the particular tool page should be optimized for the tool name that will be the keyword for the same page. 
+And the website should also contain a dark and bright mode button. Uh, you can keep that button anywhere in the website. 
+Try to, uh, be more specific. Try that... try to add that button in the navigation menu itself. 
+That will be more convenient for everyone.
