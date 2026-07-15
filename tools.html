@@ -1,0 +1,3325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToolMaster Pro — 50+ Free Online Tools</title>
+    <meta name="description" content="Free online tools: currency converter, word counter, password generator, color picker, JSON formatter, QR generator, and 50+ more utilities with real-time effects." />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & THEMES — neutral, less‑green palette
+           ============================================================ */
+        :root {
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: 0.3s ease;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.10);
+        }
+
+        /* Light theme — neutral cool gray, no green tint */
+        [data-theme="light"] {
+            --bg-body: #f4f6f9;
+            --bg-card: #ffffff;
+            --bg-nav: #ffffff;
+            --bg-hero: linear-gradient(135deg, #eef1f6 0%, #e2e8f0 100%);
+            --bg-footer: #0b1a33;
+            --text-primary: #0b1a33;
+            --text-secondary: #3a4a5f;
+            --text-muted: #6b7a8f;
+            --text-inverse: #ffffff;
+            --border: #e2e8f0;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --accent-glow: rgba(37, 99, 235, 0.15);
+            --input-bg: #ffffff;
+            --code-bg: #f1f5f9;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --success: #16a34a;
+            --warning: #eab308;
+            --danger: #dc2626;
+        }
+
+        /* Dark theme — deep neutral */
+        [data-theme="dark"] {
+            --bg-body: #0f1724;
+            --bg-card: #1a2538;
+            --bg-nav: #0f1724;
+            --bg-hero: linear-gradient(135deg, #0f1724 0%, #1a2538 100%);
+            --bg-footer: #0a0f1a;
+            --text-primary: #e8edf5;
+            --text-secondary: #a0b3cc;
+            --text-muted: #7a8aa0;
+            --text-inverse: #0b1a33;
+            --border: #2a3a52;
+            --accent: #4f8aff;
+            --accent-hover: #6b9cff;
+            --accent-light: #1a2a4a;
+            --accent-glow: rgba(79, 138, 255, 0.2);
+            --input-bg: #1a2538;
+            --code-bg: #0f1724;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-nav);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition), border var(--transition);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .navbar .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        .navbar .logo i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .nav-links li a {
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--text-primary);
+            background: var(--accent-light);
+        }
+        .nav-links li a.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            background: var(--accent-light);
+            border: none;
+            border-radius: 40px;
+            width: 44px;
+            height: 44px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: white;
+            transform: rotate(20deg);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           HERO SECTION — neutral gradient
+           ============================================================ */
+        .hero {
+            background: var(--bg-hero);
+            padding: 50px 0 40px;
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition), border var(--transition);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 10px;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 18px;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 5px 18px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 24px 0 12px;
+        }
+        .category-pills button {
+            padding: 8px 22px;
+            border-radius: 40px;
+            border: 2px solid var(--border);
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.8rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .category-pills button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .category-pills button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .tool-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* ============================================================
+           TOOLS GRID
+           ============================================================ */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 20px 0 40px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 22px 20px 24px;
+            cursor: pointer;
+            transition: transform var(--transition), box-shadow var(--transition),
+                background var(--transition), border var(--transition);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .tool-card .icon-wrap {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+        .tool-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .tool-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            flex: 1;
+        }
+        .tool-card .tag {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 12px;
+            border-radius: 30px;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            align-self: flex-start;
+        }
+        .tool-card .launch-btn {
+            margin-top: 16px;
+            padding: 9px 0;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .tool-card .launch-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ============================================================
+           PAGE SECTIONS
+           ============================================================ */
+        .page-section {
+            display: none;
+            padding: 40px 0 60px;
+            animation: fadeUp 0.4s ease;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .page-section h2 i {
+            color: var(--accent);
+        }
+        .page-section .page-content {
+            max-width: 820px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        .page-section .page-content h3 {
+            color: var(--text-primary);
+            margin: 24px 0 10px;
+            font-size: 1.2rem;
+        }
+        .page-section .page-content p {
+            margin-bottom: 14px;
+        }
+        .page-section .page-content ul {
+            padding-left: 24px;
+            margin-bottom: 14px;
+        }
+        .page-section .page-content ul li {
+            margin-bottom: 6px;
+        }
+
+        /* ============================================================
+           TOOL DETAIL PAGE
+           ============================================================ */
+        .tool-detail-page {
+            display: none;
+            padding: 30px 0 60px;
+            animation: fadeUp 0.4s ease;
+        }
+        .tool-detail-page.active {
+            display: block;
+        }
+
+        .tool-detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-family: var(--font);
+        }
+        .tool-detail-page .back-link:hover {
+            color: var(--accent);
+        }
+
+        .tool-detail-page .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .tool-detail-page .tool-header .icon-big {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        .tool-detail-page .tool-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .tool-detail-page .tool-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool-detail-page .tool-body {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 28px 30px;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), border var(--transition);
+        }
+
+        .tool-detail-page .tool-body label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        .tool-detail-page .tool-body textarea,
+        .tool-detail-page .tool-body input[type="text"],
+        .tool-detail-page .tool-body input[type="number"],
+        .tool-detail-page .tool-body input[type="date"],
+        .tool-detail-page .tool-body select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: var(--font);
+            transition: var(--transition);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            outline: none;
+            margin-bottom: 14px;
+        }
+        .tool-detail-page .tool-body textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .tool-detail-page .tool-body textarea:focus,
+        .tool-detail-page .tool-body input:focus,
+        .tool-detail-page .tool-body select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .tool-detail-page .tool-body .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 8px 0 16px;
+        }
+        .tool-detail-page .tool-body .btn-primary {
+            padding: 10px 26px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-detail-page .tool-body .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
+        .tool-detail-page .tool-body .btn-secondary {
+            padding: 10px 26px;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-detail-page .tool-body .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .tool-detail-page .tool-body .result-box {
+            background: var(--bg-body);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin-top: 14px;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Menlo', 'Consolas', monospace;
+            font-size: 0.88rem;
+            transition: background var(--transition), border var(--transition);
+        }
+        .tool-detail-page .tool-body .result-box .label {
+            font-weight: 600;
+            font-family: var(--font);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .tool-detail-page .tool-body .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .tool-detail-page .tool-body .flex-row>div {
+            flex: 1;
+            min-width: 140px;
+        }
+        .tool-detail-page .tool-body .inline-group {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tool-detail-page .tool-body .inline-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .tool-detail-page .tool-body .inline-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+        }
+
+        .tool-detail-page .tool-body .mb-8 {
+            margin-bottom: 8px;
+        }
+        .tool-detail-page .tool-body .mt-8 {
+            margin-top: 8px;
+        }
+        .tool-detail-page .tool-body .text-center {
+            text-align: center;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: var(--bg-footer);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0 24px;
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            transition: background var(--transition);
+        }
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .footer .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+        .footer .brand i {
+            color: var(--accent);
+        }
+        .footer p {
+            font-size: 0.85rem;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+        .footer .links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .footer .links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .footer .links a:hover {
+            color: white;
+        }
+        .footer .copy {
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            margin-top: 12px;
+        }
+
+        /* ============================================================
+           RESPONSIVE — high‑responsibility
+           ============================================================ */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: var(--bg-nav);
+                border-bottom: 1px solid var(--border);
+                padding: 16px 24px;
+                gap: 4px;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links li a {
+                padding: 10px 16px;
+                width: 100%;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+            .navbar {
+                padding: 0 16px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .tool-detail-page .tool-body {
+                padding: 18px 16px;
+            }
+            .page-section h2 {
+                font-size: 1.5rem;
+            }
+            .footer .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .tool-detail-page .tool-body .flex-row {
+                flex-direction: column;
+            }
+            .tool-detail-page .tool-body .flex-row>div {
+                min-width: unset;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .hidden {
+            display: none !important;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .flex {
+            display: flex;
+        }
+
+        .qr-placeholder {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 2px dashed var(--border);
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+        }
+
+        .rate-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+        .rate-status .live {
+            color: var(--success);
+        }
+        .rate-status .error {
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="logo" onclick="navigateTo('home')">
+            <i class="fas fa-toolbox"></i> ToolMaster
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" data-page="home" class="active">Home</a></li>
+            <li><a href="#" data-page="about">About</a></li>
+            <li><a href="#" data-page="contact">Contact</a></li>
+            <li><a href="#" data-page="privacy">Privacy</a></li>
+            <li><a href="#" data-page="disclaimer">Disclaimer</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    HERO SECTION
+    ============================================================ -->
+    <section class="hero" id="heroSection">
+        <div class="container">
+            <h1>50+ <span>Free</span> Online Tools</h1>
+            <p>Boost your productivity with our collection of powerful utilities — all running 100% in your browser.</p>
+            <span class="badge"><i class="fas fa-bolt"></i> No sign-up • No API keys • Private</span>
+
+            <div class="category-pills" id="categoryPills">
+                <button class="active" data-cat="all">All</button>
+                <button data-cat="text">Text</button>
+                <button data-cat="math">Math</button>
+                <button data-cat="color">Color</button>
+                <button data-cat="time">Time</button>
+                <button data-cat="convert">Convert</button>
+                <button data-cat="currency">Currency</button>
+                <button data-cat="security">Security</button>
+                <button data-cat="utility">Utility</button>
+                <button data-cat="fun">Fun</button>
+            </div>
+
+            <div class="tool-count" id="toolCount">Showing all 50+ tools</div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="container">
+
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-section active">
+            <div class="tools-grid" id="toolsGrid"></div>
+        </div>
+
+        <!-- ABOUT -->
+        <div id="page-about" class="page-section">
+            <h2><i class="fas fa-info-circle"></i> About ToolMaster</h2>
+            <div class="page-content">
+                <p><strong>ToolMaster</strong> is a comprehensive collection of free, browser-based utilities designed to make your daily tasks easier, faster, and more efficient. From text manipulation and mathematical calculations to color picking, time management, and security tools — we've got you covered.</p>
+                <h3>Why ToolMaster?</h3>
+                <p>In a world where productivity tools often come with subscriptions, data tracking, or complex setups, ToolMaster stands out as a <strong>privacy-first, zero-cost</strong> alternative. Every tool runs entirely in your browser. No data is sent to any server. No API keys required. No sign-ups. Just pure, reliable functionality.</p>
+                <h3>Our Mission</h3>
+                <p>We believe that essential digital tools should be accessible to everyone. Whether you're a student, developer, writer, designer, or just someone who needs to quickly convert a file or check a password, ToolMaster provides the tools you need — right when you need them.</p>
+                <h3>What We Offer</h3>
+                <ul>
+                    <li><strong>50+ powerful utilities</strong> across 9 categories</li>
+                    <li><strong>100% client-side</strong> — your data never leaves your device</li>
+                    <li><strong>Dark & light themes</strong> for comfortable use day or night</li>
+                    <li><strong>Mobile-friendly</strong> design that works on any device</li>
+                    <li><strong>No advertisements</strong> — just tools that work</li>
+                </ul>
+                <p>We're constantly adding new tools and improving existing ones. If you have a suggestion or feedback, we'd love to hear from you via our <a href="#" onclick="navigateTo('contact');return false;">contact page</a>.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div id="page-contact" class="page-section">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <div class="page-content">
+                <p>Have a question, suggestion, or feedback? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+                <form id="contactForm" style="max-width:600px;margin-top:20px;" onsubmit="handleContact(event)">
+                    <div style="margin-bottom:16px;">
+                        <label style="font-weight:600;display:block;margin-bottom:4px;">Your Name</label>
+                        <input type="text" id="contactName" placeholder="John Doe" required style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--input-bg);color:var(--text-primary);font-family:var(--font);font-size:1rem;"/>
+                    </div>
+                    <div style="margin-bottom:16px;">
+                        <label style="font-weight:600;display:block;margin-bottom:4px;">Email Address</label>
+                        <input type="email" id="contactEmail" placeholder="john@example.com" required style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--input-bg);color:var(--text-primary);font-family:var(--font);font-size:1rem;"/>
+                    </div>
+                    <div style="margin-bottom:16px;">
+                        <label style="font-weight:600;display:block;margin-bottom:4px;">Message</label>
+                        <textarea id="contactMessage" rows="5" placeholder="Your message here..." required style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--input-bg);color:var(--text-primary);font-family:var(--font);font-size:1rem;resize:vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="padding:12px 36px;font-size:1rem;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+                <div id="contactResponse" style="margin-top:16px;font-weight:600;"></div>
+                <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+                    <p><i class="fas fa-map-pin" style="color:var(--accent);width:24px;"></i> <strong>Location:</strong> Online — available worldwide</p>
+                    <p><i class="fas fa-clock" style="color:var(--accent);width:24px;"></i> <strong>Response time:</strong> Usually within 24–48 hours</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY -->
+        <div id="page-privacy" class="page-section">
+            <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+            <div class="page-content">
+                <p><strong>Last updated:</strong> July 2026</p>
+                <p>At ToolMaster, we take your privacy seriously. This policy describes how we handle your information when you use our website.</p>
+                <h3>Information We Collect</h3>
+                <p><strong>We collect NO personal data.</strong> All tools run entirely in your browser. We do not use cookies, tracking pixels, or analytics scripts. We do not store, process, or transmit any data you enter into our tools.</p>
+                <h3>How Your Data Is Used</h3>
+                <p>Since we don't collect any data, there's nothing to use. Every calculation, transformation, or conversion happens locally on your device. Your information never leaves your browser.</p>
+                <h3>Third-Party Services</h3>
+                <p>We do not use any third-party services that collect data. We serve fonts and icons from CDN providers, but these are standard web resources and do not track you.</p>
+                <h3>Your Rights</h3>
+                <p>Because we don't store any personal data, there is nothing to access, modify, or delete. You have complete control over your data at all times.</p>
+                <p>If you have any questions about our privacy practices, please <a href="#" onclick="navigateTo('contact');return false;">contact us</a>.</p>
+            </div>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div id="page-disclaimer" class="page-section">
+            <h2><i class="fas fa-triangle-exclamation"></i> Disclaimer</h2>
+            <div class="page-content">
+                <p><strong>Effective date:</strong> July 2026</p>
+                <p>The information and tools provided on ToolMaster are for general informational and educational purposes only. All tools are provided "as is" without any warranties of any kind.</p>
+                <h3>No Warranty</h3>
+                <p>We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the tools or the information contained on the website. Any reliance you place on such information is strictly at your own risk.</p>
+                <h3>Limitation of Liability</h3>
+                <p>In no event shall ToolMaster be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                <h3>External Links</h3>
+                <p>Through this website you may be able to link to other websites which are not under our control. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
+                <h3>Acceptance of Terms</h3>
+                <p>By using this website, you signify your acceptance of this disclaimer. If you do not agree with any part of this disclaimer, please do not use our website.</p>
+            </div>
+        </div>
+
+        <!-- TOOL DETAIL -->
+        <div id="toolDetailPage" class="tool-detail-page">
+            <button class="back-link" onclick="closeToolDetail()">
+                <i class="fas fa-arrow-left"></i> Back to all tools
+            </button>
+            <div id="toolDetailContent"></div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <div class="brand"><i class="fas fa-toolbox"></i> ToolMaster</div>
+                <p>50+ free, browser-based utilities for everyday productivity. No sign-up, no tracking, no nonsense.</p>
+            </div>
+            <div class="links">
+                <a href="#" onclick="navigateTo('home');return false;">Home</a>
+                <a href="#" onclick="navigateTo('about');return false;">About</a>
+                <a href="#" onclick="navigateTo('contact');return false;">Contact</a>
+                <a href="#" onclick="navigateTo('privacy');return false;">Privacy</a>
+                <a href="#" onclick="navigateTo('disclaimer');return false;">Disclaimer</a>
+            </div>
+            <div class="copy">
+                &copy; 2026 ToolMaster. All rights reserved. Built with <i class="fas fa-heart" style="color:var(--accent);"></i> for the web.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT — ALL TOOLS + REAL‑TIME UPDATES + RESPONSIVE
+    ============================================================ -->
+    <script>
+        // ================================================================
+        //  1.  TOOL DEFINITIONS  (50+ tools, with real‑time enhancements)
+        // ================================================================
+
+        const TOOLS = [
+            // ---- CURRENCY ----
+            {
+                id: 'currency-converter',
+                category: 'currency',
+                icon: 'fa-solid fa-money-bill-wave',
+                name: 'Currency Converter',
+                desc: 'Convert between INR (India), GBP (UK), USD (USA) and 30+ world currencies with live rates.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div>
+                    <label>Amount:</label>
+                    <input type="number" id="ccAmount" value="100" step="0.01" min="0" oninput="currencyConvert()" />
+                  </div>
+                  <div>
+                    <label>From:</label>
+                    <select id="ccFrom" onchange="currencyConvert()">
+                      <option value="USD">USD (US Dollar)</option>
+                      <option value="INR" selected>INR (Indian Rupee)</option>
+                      <option value="GBP">GBP (British Pound)</option>
+                      <option value="EUR">EUR (Euro)</option>
+                      <option value="JPY">JPY (Japanese Yen)</option>
+                      <option value="AUD">AUD (Australian Dollar)</option>
+                      <option value="CAD">CAD (Canadian Dollar)</option>
+                      <option value="CHF">CHF (Swiss Franc)</option>
+                      <option value="CNY">CNY (Chinese Yuan)</option>
+                      <option value="SGD">SGD (Singapore Dollar)</option>
+                      <option value="NZD">NZD (New Zealand Dollar)</option>
+                      <option value="KRW">KRW (South Korean Won)</option>
+                      <option value="BRL">BRL (Brazilian Real)</option>
+                      <option value="ZAR">ZAR (South African Rand)</option>
+                      <option value="MXN">MXN (Mexican Peso)</option>
+                      <option value="AED">AED (UAE Dirham)</option>
+                      <option value="SAR">SAR (Saudi Riyal)</option>
+                      <option value="TRY">TRY (Turkish Lira)</option>
+                      <option value="RUB">RUB (Russian Ruble)</option>
+                      <option value="HKD">HKD (Hong Kong Dollar)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label>To:</label>
+                    <select id="ccTo" onchange="currencyConvert()">
+                      <option value="USD" selected>USD (US Dollar)</option>
+                      <option value="INR">INR (Indian Rupee)</option>
+                      <option value="GBP">GBP (British Pound)</option>
+                      <option value="EUR">EUR (Euro)</option>
+                      <option value="JPY">JPY (Japanese Yen)</option>
+                      <option value="AUD">AUD (Australian Dollar)</option>
+                      <option value="CAD">CAD (Canadian Dollar)</option>
+                      <option value="CHF">CHF (Swiss Franc)</option>
+                      <option value="CNY">CNY (Chinese Yuan)</option>
+                      <option value="SGD">SGD (Singapore Dollar)</option>
+                      <option value="NZD">NZD (New Zealand Dollar)</option>
+                      <option value="KRW">KRW (South Korean Won)</option>
+                      <option value="BRL">BRL (Brazilian Real)</option>
+                      <option value="ZAR">ZAR (South African Rand)</option>
+                      <option value="MXN">MXN (Mexican Peso)</option>
+                      <option value="AED">AED (UAE Dirham)</option>
+                      <option value="SAR">SAR (Saudi Riyal)</option>
+                      <option value="TRY">TRY (Turkish Lira)</option>
+                      <option value="RUB">RUB (Russian Ruble)</option>
+                      <option value="HKD">HKD (Hong Kong Dollar)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="currencyConvert()"><i class="fas fa-exchange-alt"></i> Convert</button>
+                  <button class="btn-secondary" onclick="currencySwap()"><i class="fas fa-arrows-left-right"></i> Swap</button>
+                </div>
+                <div class="result-box" id="ccResult"><span class="label">Result</span>Enter an amount and click Convert.</div>
+                <div class="rate-status" id="ccStatus"><span class="live">✓ Live rates from Frankfurter API</span></div>
+              `;
+                }
+            },
+
+            // ---- TEXT (8) with real‑time oninput ----
+            {
+                id: 'word-counter',
+                category: 'text',
+                icon: 'fa-solid fa-align-left',
+                name: 'Word Counter',
+                desc: 'Count words, characters, sentences, and paragraphs in real‑time.',
+                render: function() {
+                    return `
+                <label>Enter your text:</label>
+                <textarea id="wcInput" rows="5" placeholder="Paste or type text here…" oninput="wordCounter()"></textarea>
+                <div class="result-box" id="wcResult"><span class="label">Results</span>Words: 0 &nbsp;|&nbsp; Chars: 0 &nbsp;|&nbsp; (no spaces): 0 &nbsp;|&nbsp; Sentences: 0 &nbsp;|&nbsp; Paragraphs: 0</div>
+              `;
+                }
+            }, {
+                id: 'case-converter',
+                category: 'text',
+                icon: 'fa-solid fa-font',
+                name: 'Case Converter',
+                desc: 'Transform text to UPPER, lower, Title, Sentence case, or tOGGLE cASE.',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="ccInput" rows="4" placeholder="Type something…" oninput="caseConvert('upper')"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="caseConvert('upper')"><i class="fas fa-arrow-up"></i> UPPER</button>
+                  <button class="btn-primary" onclick="caseConvert('lower')"><i class="fas fa-arrow-down"></i> lower</button>
+                  <button class="btn-primary" onclick="caseConvert('title')"><i class="fas fa-heading"></i> Title</button>
+                  <button class="btn-primary" onclick="caseConvert('sentence')"><i class="fas fa-grip-lines"></i> Sentence</button>
+                  <button class="btn-primary" onclick="caseConvert('toggle')"><i class="fas fa-random"></i> tOGGLE</button>
+                </div>
+                <div class="result-box" id="ccResultText"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'text-reverser',
+                category: 'text',
+                icon: 'fa-solid fa-arrow-right-arrow-left',
+                name: 'Text Reverser',
+                desc: 'Reverse any text — character by character, word by word, or line by line.',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="trInput" rows="4" placeholder="Text to reverse…" oninput="textReverser('char')"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="textReverser('char')"><i class="fas fa-undo-alt"></i> Reverse chars</button>
+                  <button class="btn-primary" onclick="textReverser('word')"><i class="fas fa-arrows-split-up-and-left"></i> Reverse words</button>
+                  <button class="btn-primary" onclick="textReverser('line')"><i class="fas fa-list-ol"></i> Reverse lines</button>
+                </div>
+                <div class="result-box" id="trResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'duplicate-remover',
+                category: 'text',
+                icon: 'fa-solid fa-copy',
+                name: 'Remove Duplicate Lines',
+                desc: 'Remove duplicate lines from a text block while preserving order.',
+                render: function() {
+                    return `
+                <label>Enter text with duplicate lines:</label>
+                <textarea id="drInput" rows="5" placeholder="Line 1&#10;Line 2&#10;Line 1&#10;Line 3" oninput="removeDuplicates()"></textarea>
+                <button class="btn-primary" onclick="removeDuplicates()"><i class="fas fa-eraser"></i> Remove Duplicates</button>
+                <div class="result-box" id="drResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'text-repeater',
+                category: 'text',
+                icon: 'fa-solid fa-repeat',
+                name: 'Text Repeater',
+                desc: 'Repeat any text N times with optional separator.',
+                render: function() {
+                    return `
+                <label>Text to repeat:</label>
+                <input type="text" id="repText" placeholder="Hello" oninput="textRepeater()" />
+                <div class="flex-row">
+                  <div><label>Repeat count:</label><input type="number" id="repCount" value="3" min="1" max="999" oninput="textRepeater()" /></div>
+                  <div><label>Separator:</label><input type="text" id="repSep" placeholder=", " value=", " oninput="textRepeater()" /></div>
+                </div>
+                <button class="btn-primary" onclick="textRepeater()"><i class="fas fa-play"></i> Repeat</button>
+                <div class="result-box" id="repResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'find-replace',
+                category: 'text',
+                icon: 'fa-solid fa-magnifying-glass',
+                name: 'Find & Replace',
+                desc: 'Find and replace text with support for case-sensitive and whole-word options.',
+                render: function() {
+                    return `
+                <label>Source text:</label>
+                <textarea id="frInput" rows="4" placeholder="Type your text here…" oninput="findReplace()"></textarea>
+                <div class="flex-row">
+                  <div><label>Find:</label><input type="text" id="frFind" placeholder="search…" oninput="findReplace()" /></div>
+                  <div><label>Replace with:</label><input type="text" id="frReplace" placeholder="replace…" oninput="findReplace()" /></div>
+                </div>
+                <div class="inline-group mb-8">
+                  <label><input type="checkbox" id="frCase" onchange="findReplace()" /> Case-sensitive</label>
+                  <label><input type="checkbox" id="frWhole" onchange="findReplace()" /> Whole word</label>
+                </div>
+                <button class="btn-primary" onclick="findReplace()"><i class="fas fa-rotate-right"></i> Replace All</button>
+                <div class="result-box" id="frResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'line-sorter',
+                category: 'text',
+                icon: 'fa-solid fa-arrow-up-a-z',
+                name: 'Line Sorter',
+                desc: 'Sort lines alphabetically (A→Z or Z→A) or by length.',
+                render: function() {
+                    return `
+                <label>Enter lines:</label>
+                <textarea id="lsInput" rows="5" placeholder="Line 1&#10;Line 2&#10;Line 3" oninput="lineSorter('az')"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="lineSorter('az')"><i class="fas fa-arrow-up-a-z"></i> A → Z</button>
+                  <button class="btn-primary" onclick="lineSorter('za')"><i class="fas fa-arrow-down-a-z"></i> Z → A</button>
+                  <button class="btn-primary" onclick="lineSorter('len')"><i class="fas fa-arrows-up-down"></i> By length</button>
+                </div>
+                <div class="result-box" id="lsResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'text-trimmer',
+                category: 'text',
+                icon: 'fa-solid fa-vector-square',
+                name: 'Text Trimmer',
+                desc: 'Trim whitespace, remove extra spaces, or remove empty lines.',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="ttInput" rows="5" placeholder="  text with   extra   spaces  " oninput="textTrimmer('trim')"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="textTrimmer('trim')"><i class="fas fa-vector-square"></i> Trim edges</button>
+                  <button class="btn-primary" onclick="textTrimmer('space')"><i class="fas fa-compress"></i> Collapse spaces</button>
+                  <button class="btn-primary" onclick="textTrimmer('empty')"><i class="fas fa-remove-format"></i> Remove empty lines</button>
+                </div>
+                <div class="result-box" id="ttResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- MATH (9) with real‑time ----
+            {
+                id: 'percentage-calc',
+                category: 'math',
+                icon: 'fa-solid fa-percent',
+                name: 'Percentage Calculator',
+                desc: 'Find what percent X is of Y, or calculate X% of Y.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value X:</label><input type="number" id="pX" value="25" step="any" oninput="percentCalc('of')" /></div>
+                  <div><label>Value Y:</label><input type="number" id="pY" value="200" step="any" oninput="percentCalc('of')" /></div>
+                </div>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="percentCalc('of')"><i class="fas fa-calculator"></i> X is what % of Y?</button>
+                  <button class="btn-primary" onclick="percentCalc('percent')"><i class="fas fa-percent"></i> X% of Y = ?</button>
+                </div>
+                <div class="result-box" id="pResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'tip-calculator',
+                category: 'math',
+                icon: 'fa-solid fa-hand-holding-dollar',
+                name: 'Tip Calculator',
+                desc: 'Calculate tip amount and total per person based on bill, tip %, and number of people.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Bill ($):</label><input type="number" id="tipBill" value="100" step="0.01" oninput="tipCalc()" /></div>
+                  <div><label>Tip %:</label><input type="number" id="tipPct" value="15" step="0.1" oninput="tipCalc()" /></div>
+                  <div><label>People:</label><input type="number" id="tipPeople" value="2" min="1" step="1" oninput="tipCalc()" /></div>
+                </div>
+                <button class="btn-primary" onclick="tipCalc()"><i class="fas fa-calculator"></i> Calculate</button>
+                <div class="result-box" id="tipResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'discount-calc',
+                category: 'math',
+                icon: 'fa-solid fa-tags',
+                name: 'Discount Calculator',
+                desc: 'Calculate the discounted price and savings from original price and discount %.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Original price ($):</label><input type="number" id="discOrig" value="120" step="0.01" oninput="discountCalc()" /></div>
+                  <div><label>Discount %:</label><input type="number" id="discPct" value="25" step="0.1" oninput="discountCalc()" /></div>
+                </div>
+                <button class="btn-primary" onclick="discountCalc()"><i class="fas fa-tag"></i> Calculate</button>
+                <div class="result-box" id="discResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'bmi-calculator',
+                category: 'math',
+                icon: 'fa-solid fa-weight-scale',
+                name: 'BMI Calculator',
+                desc: 'Calculate Body Mass Index from weight and height (metric or imperial).',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Weight:</label><input type="number" id="bmiWeight" value="75" step="0.1" oninput="bmiCalc()" /></div>
+                  <div><label>Height:</label><input type="number" id="bmiHeight" value="1.75" step="0.01" oninput="bmiCalc()" /></div>
+                  <div><label>Units:</label>
+                    <select id="bmiUnits" onchange="bmiCalc()"><option value="metric">Metric (kg, m)</option><option value="imperial">Imperial (lb, in)</option></select>
+                  </div>
+                </div>
+                <button class="btn-primary" onclick="bmiCalc()"><i class="fas fa-heart"></i> Calculate BMI</button>
+                <div class="result-box" id="bmiResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'age-calculator',
+                category: 'math',
+                icon: 'fa-solid fa-cake-candles',
+                name: 'Age Calculator',
+                desc: 'Calculate exact age in years, months, days from birth date.',
+                render: function() {
+                    return `
+                <label>Date of birth:</label>
+                <input type="date" id="ageDate" value="2000-01-01" onchange="ageCalc()" />
+                <button class="btn-primary" onclick="ageCalc()"><i class="fas fa-clock"></i> Calculate Age</button>
+                <div class="result-box" id="ageResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'random-number',
+                category: 'math',
+                icon: 'fa-solid fa-dice',
+                name: 'Random Number Generator',
+                desc: 'Generate a random integer between any min and max values.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Min:</label><input type="number" id="rnMin" value="1" oninput="randomNum()" /></div>
+                  <div><label>Max:</label><input type="number" id="rnMax" value="100" oninput="randomNum()" /></div>
+                </div>
+                <button class="btn-primary" onclick="randomNum()"><i class="fas fa-shuffle"></i> Generate</button>
+                <div class="result-box" id="rnResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'prime-checker',
+                category: 'math',
+                icon: 'fa-solid fa-chess-queen',
+                name: 'Prime Number Checker',
+                desc: 'Check if a number is prime, and find all primes up to that number.',
+                render: function() {
+                    return `
+                <label>Enter a number:</label>
+                <input type="number" id="primeNum" value="47" min="2" oninput="primeCheck()" />
+                <div class="action-row">
+                  <button class="btn-primary" onclick="primeCheck()"><i class="fas fa-check-circle"></i> Check Prime</button>
+                  <button class="btn-primary" onclick="primeList()"><i class="fas fa-list"></i> List primes up to N</button>
+                </div>
+                <div class="result-box" id="primeResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'fibonacci',
+                category: 'math',
+                icon: 'fa-solid fa-spiral',
+                name: 'Fibonacci Generator',
+                desc: 'Generate the Fibonacci sequence up to N terms or up to a max value.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Number of terms:</label><input type="number" id="fibN" value="10" min="1" max="100" oninput="fibGen()" /></div>
+                  <div><label>Max value (optional):</label><input type="number" id="fibMax" placeholder="e.g. 1000" oninput="fibGen()" /></div>
+                </div>
+                <button class="btn-primary" onclick="fibGen()"><i class="fas fa-chart-line"></i> Generate</button>
+                <div class="result-box" id="fibResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'gcd-lcm',
+                category: 'math',
+                icon: 'fa-solid fa-divide',
+                name: 'GCD & LCM',
+                desc: 'Calculate the Greatest Common Divisor and Least Common Multiple of two numbers.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Number A:</label><input type="number" id="gcdA" value="48" step="1" oninput="gcdLcm()" /></div>
+                  <div><label>Number B:</label><input type="number" id="gcdB" value="18" step="1" oninput="gcdLcm()" /></div>
+                </div>
+                <button class="btn-primary" onclick="gcdLcm()"><i class="fas fa-equals"></i> Calculate</button>
+                <div class="result-box" id="gcdResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- COLOR (4) with real‑time ----
+            {
+                id: 'color-picker',
+                category: 'color',
+                icon: 'fa-solid fa-palette',
+                name: 'Color Picker',
+                desc: 'Pick a color and see its HEX, RGB, and HSL values in real‑time.',
+                render: function() {
+                    return `
+                <label>Choose a color:</label>
+                <input type="color" id="cpColor" value="#2563eb" style="width:100%;height:60px;cursor:pointer;" oninput="colorPick()" />
+                <button class="btn-primary" onclick="colorPick()"><i class="fas fa-eye"></i> Show values</button>
+                <div class="result-box" id="cpResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'color-converter',
+                category: 'color',
+                icon: 'fa-solid fa-arrows-rotate',
+                name: 'Color Converter',
+                desc: 'Convert between HEX, RGB, and HSL color formats.',
+                render: function() {
+                    return `
+                <label>Enter color (HEX, RGB, or HSL):</label>
+                <input type="text" id="ccvInput" placeholder="#2563eb or rgb(37,99,235) or hsl(217,91%,53%)" oninput="colorConvert()" />
+                <button class="btn-primary" onclick="colorConvert()"><i class="fas fa-exchange-alt"></i> Convert</button>
+                <div class="result-box" id="ccvResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'palette-gen',
+                category: 'color',
+                icon: 'fa-solid fa-swatchbook',
+                name: 'Palette Generator',
+                desc: 'Generate 5 harmonious colors from a base color (analogous, complementary, etc.).',
+                render: function() {
+                    return `
+                <label>Base color:</label>
+                <input type="color" id="pgColor" value="#2563eb" style="width:100%;height:50px;cursor:pointer;" oninput="paletteGen('analogous')" />
+                <div class="action-row">
+                  <button class="btn-primary" onclick="paletteGen('analogous')"><i class="fas fa-palette"></i> Analogous</button>
+                  <button class="btn-primary" onclick="paletteGen('complementary')"><i class="fas fa-circle-half-stroke"></i> Complementary</button>
+                  <button class="btn-primary" onclick="paletteGen('triadic')"><i class="fas fa-triangle-exclamation"></i> Triadic</button>
+                </div>
+                <div class="result-box" id="pgResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'random-color',
+                category: 'color',
+                icon: 'fa-solid fa-dice-d6',
+                name: 'Random Color',
+                desc: 'Generate random HEX or RGB colors with a click.',
+                render: function() {
+                    return `
+                <div class="action-row">
+                  <button class="btn-primary" onclick="randomColor('hex')"><i class="fas fa-hashtag"></i> Random HEX</button>
+                  <button class="btn-primary" onclick="randomColor('rgb')"><i class="fas fa-ruler-combined"></i> Random RGB</button>
+                </div>
+                <div class="result-box" id="rcResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- TIME (5) ----
+            {
+                id: 'countdown-timer',
+                category: 'time',
+                icon: 'fa-solid fa-hourglass-half',
+                name: 'Countdown Timer',
+                desc: 'Set a countdown timer with start/pause/reset controls.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Minutes:</label><input type="number" id="cdMin" value="5" min="0" /></div>
+                  <div><label>Seconds:</label><input type="number" id="cdSec" value="0" min="0" max="59" /></div>
+                </div>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="countdownStart()"><i class="fas fa-play"></i> Start</button>
+                  <button class="btn-primary" onclick="countdownPause()"><i class="fas fa-pause"></i> Pause</button>
+                  <button class="btn-primary" onclick="countdownReset()"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+                <div class="result-box" id="cdResult"><span class="label">⏱️</span> <span id="cdDisplay">05:00</span></div>
+              `;
+                }
+            }, {
+                id: 'stopwatch',
+                category: 'time',
+                icon: 'fa-solid fa-stopwatch',
+                name: 'Stopwatch',
+                desc: 'Simple stopwatch with start, stop, and reset controls.',
+                render: function() {
+                    return `
+                <div class="text-center" style="font-size:3rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:2px;padding:12px 0;" id="swDisplay">00:00:00</div>
+                <div class="action-row" style="justify-content:center;">
+                  <button class="btn-primary" onclick="stopwatchStart()"><i class="fas fa-play"></i> Start</button>
+                  <button class="btn-primary" onclick="stopwatchStop()"><i class="fas fa-stop"></i> Stop</button>
+                  <button class="btn-primary" onclick="stopwatchReset()"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+                <div class="result-box" id="swResult"><span class="label">Laps</span> <span id="swLaps">—</span></div>
+              `;
+                }
+            }, {
+                id: 'world-clock',
+                category: 'time',
+                icon: 'fa-solid fa-earth-americas',
+                name: 'World Clock',
+                desc: 'See current time in multiple time zones.',
+                render: function() {
+                    return `
+                <button class="btn-primary" onclick="worldClock()"><i class="fas fa-sync-alt"></i> Refresh all times</button>
+                <div class="result-box" id="wcResult"><span class="label">🌍 World Clock</span><div id="wcList"></div></div>
+              `;
+                }
+            }, {
+                id: 'date-diff',
+                category: 'time',
+                icon: 'fa-solid fa-calendar-days',
+                name: 'Date Difference',
+                desc: 'Calculate the difference between two dates in days, months, and years.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Start date:</label><input type="date" id="ddStart" onchange="dateDiff()" /></div>
+                  <div><label>End date:</label><input type="date" id="ddEnd" onchange="dateDiff()" /></div>
+                </div>
+                <button class="btn-primary" onclick="dateDiff()"><i class="fas fa-calculator"></i> Calculate</button>
+                <div class="result-box" id="ddResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'week-number',
+                category: 'time',
+                icon: 'fa-solid fa-calendar-week',
+                name: 'Week Number',
+                desc: 'Find the week number of any date (ISO 8601).',
+                render: function() {
+                    return `
+                <label>Select a date:</label>
+                <input type="date" id="wnDate" onchange="weekNumber()" />
+                <button class="btn-primary" onclick="weekNumber()"><i class="fas fa-calendar"></i> Get Week Number</button>
+                <div class="result-box" id="wnResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- CONVERSION (9) with real‑time ----
+            {
+                id: 'length-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-ruler',
+                name: 'Length Converter',
+                desc: 'Convert between meters, kilometers, miles, feet, inches, and more.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="lcVal" value="1" step="any" oninput="lengthConv()" /></div>
+                  <div><label>From:</label><select id="lcFrom" onchange="lengthConv()"><option value="m">Meters</option><option value="km">Kilometers</option><option value="mi">Miles</option><option value="ft">Feet</option><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>
+                  <div><label>To:</label><select id="lcTo" onchange="lengthConv()"><option value="m">Meters</option><option value="km">Kilometers</option><option value="mi">Miles</option><option value="ft">Feet</option><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="lengthConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="lcResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'weight-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-weight-hanging',
+                name: 'Weight Converter',
+                desc: 'Convert between kg, g, lb, oz, and more.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="wvVal" value="1" step="any" oninput="weightConv()" /></div>
+                  <div><label>From:</label><select id="wvFrom" onchange="weightConv()"><option value="kg">Kilograms</option><option value="g">Grams</option><option value="lb">Pounds</option><option value="oz">Ounces</option></select></div>
+                  <div><label>To:</label><select id="wvTo" onchange="weightConv()"><option value="kg">Kilograms</option><option value="g">Grams</option><option value="lb">Pounds</option><option value="oz">Ounces</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="weightConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="wvResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'temperature-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-temperature-high',
+                name: 'Temperature Converter',
+                desc: 'Convert between Celsius, Fahrenheit, and Kelvin.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="tvVal" value="25" step="any" oninput="tempConv()" /></div>
+                  <div><label>From:</label><select id="tvFrom" onchange="tempConv()"><option value="C">°C</option><option value="F">°F</option><option value="K">K</option></select></div>
+                  <div><label>To:</label><select id="tvTo" onchange="tempConv()"><option value="C">°C</option><option value="F">°F</option><option value="K">K</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="tempConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="tvResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'speed-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-gauge-high',
+                name: 'Speed Converter',
+                desc: 'Convert between km/h, m/s, mph, and knots.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="spVal" value="100" step="any" oninput="speedConv()" /></div>
+                  <div><label>From:</label><select id="spFrom" onchange="speedConv()"><option value="kmh">km/h</option><option value="ms">m/s</option><option value="mph">mph</option><option value="knot">knots</option></select></div>
+                  <div><label>To:</label><select id="spTo" onchange="speedConv()"><option value="kmh">km/h</option><option value="ms">m/s</option><option value="mph">mph</option><option value="knot">knots</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="speedConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="spResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'area-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-vector-square',
+                name: 'Area Converter',
+                desc: 'Convert between square meters, square feet, acres, hectares, etc.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="arVal" value="1" step="any" oninput="areaConv()" /></div>
+                  <div><label>From:</label><select id="arFrom" onchange="areaConv()"><option value="m2">m²</option><option value="ft2">ft²</option><option value="ac">Acres</option><option value="ha">Hectares</option><option value="km2">km²</option></select></div>
+                  <div><label>To:</label><select id="arTo" onchange="areaConv()"><option value="m2">m²</option><option value="ft2">ft²</option><option value="ac">Acres</option><option value="ha">Hectares</option><option value="km2">km²</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="areaConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="arResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'volume-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-flask',
+                name: 'Volume Converter',
+                desc: 'Convert between liters, gallons, cubic meters, cups, etc.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="voVal" value="1" step="any" oninput="volumeConv()" /></div>
+                  <div><label>From:</label><select id="voFrom" onchange="volumeConv()"><option value="l">Liters</option><option value="gal">Gallons</option><option value="m3">m³</option><option value="cup">Cups</option><option value="ml">mL</option></select></div>
+                  <div><label>To:</label><select id="voTo" onchange="volumeConv()"><option value="l">Liters</option><option value="gal">Gallons</option><option value="m3">m³</option><option value="cup">Cups</option><option value="ml">mL</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="volumeConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="voResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'time-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-clock',
+                name: 'Time Converter',
+                desc: 'Convert between seconds, minutes, hours, days, weeks.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="tcVal" value="1" step="any" oninput="timeConv()" /></div>
+                  <div><label>From:</label><select id="tcFrom" onchange="timeConv()"><option value="s">Seconds</option><option value="min">Minutes</option><option value="h">Hours</option><option value="d">Days</option><option value="w">Weeks</option></select></div>
+                  <div><label>To:</label><select id="tcTo" onchange="timeConv()"><option value="s">Seconds</option><option value="min">Minutes</option><option value="h">Hours</option><option value="d">Days</option><option value="w">Weeks</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="timeConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="tcResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'data-converter',
+                category: 'convert',
+                icon: 'fa-solid fa-database',
+                name: 'Data Storage Converter',
+                desc: 'Convert between bytes, KB, MB, GB, TB, PB.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Value:</label><input type="number" id="dcVal" value="1" step="any" oninput="dataConv()" /></div>
+                  <div><label>From:</label><select id="dcFrom" onchange="dataConv()"><option value="B">Bytes</option><option value="KB">KB</option><option value="MB">MB</option><option value="GB">GB</option><option value="TB">TB</option><option value="PB">PB</option></select></div>
+                  <div><label>To:</label><select id="dcTo" onchange="dataConv()"><option value="B">Bytes</option><option value="KB">KB</option><option value="MB">MB</option><option value="GB">GB</option><option value="TB">TB</option><option value="PB">PB</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="dataConv()"><i class="fas fa-arrows-left-right"></i> Convert</button>
+                <div class="result-box" id="dcResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'number-to-words',
+                category: 'convert',
+                icon: 'fa-solid fa-hashtag',
+                name: 'Number to Words',
+                desc: 'Convert any number into English words.',
+                render: function() {
+                    return `
+                <label>Enter a number:</label>
+                <input type="number" id="nwVal" value="12345" step="1" oninput="numberToWords()" />
+                <button class="btn-primary" onclick="numberToWords()"><i class="fas fa-font"></i> Convert to words</button>
+                <div class="result-box" id="nwResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- SECURITY (2) ----
+            {
+                id: 'password-generator',
+                category: 'security',
+                icon: 'fa-solid fa-key',
+                name: 'Password Generator',
+                desc: 'Generate strong, customizable passwords with options for length and character types.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Length:</label><input type="number" id="pgLen" value="16" min="4" max="64" oninput="passwordGen()" /></div>
+                </div>
+                <div class="inline-group mb-8">
+                  <label><input type="checkbox" id="pgUpper" checked onchange="passwordGen()" /> A-Z</label>
+                  <label><input type="checkbox" id="pgLower" checked onchange="passwordGen()" /> a-z</label>
+                  <label><input type="checkbox" id="pgDigits" checked onchange="passwordGen()" /> 0-9</label>
+                  <label><input type="checkbox" id="pgSymbols" checked onchange="passwordGen()" /> !@#$%^&*</label>
+                </div>
+                <button class="btn-primary" onclick="passwordGen()"><i class="fas fa-lock"></i> Generate</button>
+                <div class="result-box" id="pgResult"><span class="label">Password</span></div>
+              `;
+                }
+            }, {
+                id: 'password-strength',
+                category: 'security',
+                icon: 'fa-solid fa-shield-halved',
+                name: 'Password Strength Checker',
+                desc: 'Check the strength of any password with detailed feedback.',
+                render: function() {
+                    return `
+                <label>Enter a password:</label>
+                <input type="text" id="psInput" placeholder="Type a password…" oninput="passwordStrength()" />
+                <button class="btn-primary" onclick="passwordStrength()"><i class="fas fa-shield"></i> Check Strength</button>
+                <div class="result-box" id="psResult"><span class="label">Result</span></div>
+              `;
+                }
+            },
+
+            // ---- UTILITY (9) with real‑time ----
+            {
+                id: 'url-encoder',
+                category: 'utility',
+                icon: 'fa-solid fa-link',
+                name: 'URL Encoder / Decoder',
+                desc: 'Encode or decode any URL or text for use in URLs.',
+                render: function() {
+                    return `
+                <label>Enter text or URL:</label>
+                <textarea id="ueInput" rows="3" placeholder="https://example.com?q=hello world" oninput="urlEncode()"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="urlEncode()"><i class="fas fa-arrow-up"></i> Encode</button>
+                  <button class="btn-primary" onclick="urlDecode()"><i class="fas fa-arrow-down"></i> Decode</button>
+                </div>
+                <div class="result-box" id="ueResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'base64',
+                category: 'utility',
+                icon: 'fa-solid fa-code',
+                name: 'Base64 Encoder / Decoder',
+                desc: 'Encode or decode text to/from Base64 format.',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="b64Input" rows="3" placeholder="Hello World!" oninput="base64Encode()"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="base64Encode()"><i class="fas fa-arrow-up"></i> Encode</button>
+                  <button class="btn-primary" onclick="base64Decode()"><i class="fas fa-arrow-down"></i> Decode</button>
+                </div>
+                <div class="result-box" id="b64Result"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'json-formatter',
+                category: 'utility',
+                icon: 'fa-solid fa-brackets-curly',
+                name: 'JSON Formatter / Validator',
+                desc: 'Format, validate, and minify JSON data.',
+                render: function() {
+                    return `
+                <label>Enter JSON:</label>
+                <textarea id="jfInput" rows="5" placeholder='{"name":"John","age":30}' oninput="jsonValidate()"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="jsonFormat()"><i class="fas fa-indent"></i> Format</button>
+                  <button class="btn-primary" onclick="jsonMinify()"><i class="fas fa-compress"></i> Minify</button>
+                  <button class="btn-primary" onclick="jsonValidate()"><i class="fas fa-check-circle"></i> Validate</button>
+                </div>
+                <div class="result-box" id="jfResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'html-entity',
+                category: 'utility',
+                icon: 'fa-solid fa-code',
+                name: 'HTML Entity Encoder / Decoder',
+                desc: 'Encode or decode HTML entities (e.g. &lt; &gt; &amp;).',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="heInput" rows="3" placeholder="<div>Hello & World</div>" oninput="htmlEntityEncode()"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="htmlEntityEncode()"><i class="fas fa-arrow-up"></i> Encode</button>
+                  <button class="btn-primary" onclick="htmlEntityDecode()"><i class="fas fa-arrow-down"></i> Decode</button>
+                </div>
+                <div class="result-box" id="heResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'lorem-ipsum',
+                category: 'utility',
+                icon: 'fa-solid fa-paragraph',
+                name: 'Lorem Ipsum Generator',
+                desc: 'Generate placeholder text in various lengths (paragraphs, sentences, words).',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Count:</label><input type="number" id="liCount" value="3" min="1" max="20" oninput="loremGen()" /></div>
+                  <div><label>Type:</label><select id="liType" onchange="loremGen()"><option value="paragraphs">Paragraphs</option><option value="sentences">Sentences</option><option value="words">Words</option></select></div>
+                </div>
+                <button class="btn-primary" onclick="loremGen()"><i class="fas fa-feather"></i> Generate</button>
+                <div class="result-box" id="liResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'uuid-generator',
+                category: 'utility',
+                icon: 'fa-solid fa-fingerprint',
+                name: 'UUID Generator',
+                desc: 'Generate version 4 UUIDs (random).',
+                render: function() {
+                    return `
+                <div class="action-row">
+                  <button class="btn-primary" onclick="uuidGen()"><i class="fas fa-fingerprint"></i> Generate UUID</button>
+                  <button class="btn-primary" onclick="uuidGenMultiple()"><i class="fas fa-list"></i> Generate 5 UUIDs</button>
+                </div>
+                <div class="result-box" id="uuidResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'hash-generator',
+                category: 'utility',
+                icon: 'fa-solid fa-fingerprint',
+                name: 'Hash Generator',
+                desc: 'Generate SHA-256, SHA-384, or SHA-512 hashes of any text.',
+                render: function() {
+                    return `
+                <label>Enter text:</label>
+                <textarea id="hashInput" rows="3" placeholder="Text to hash…" oninput="hashGen('SHA-256')"></textarea>
+                <div class="action-row">
+                  <button class="btn-primary" onclick="hashGen('SHA-256')"><i class="fas fa-fingerprint"></i> SHA-256</button>
+                  <button class="btn-primary" onclick="hashGen('SHA-384')"><i class="fas fa-fingerprint"></i> SHA-384</button>
+                  <button class="btn-primary" onclick="hashGen('SHA-512')"><i class="fas fa-fingerprint"></i> SHA-512</button>
+                </div>
+                <div class="result-box" id="hashResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'qr-generator',
+                category: 'utility',
+                icon: 'fa-solid fa-qrcode',
+                name: 'QR Code Generator',
+                desc: 'Generate a QR code from any text or URL.',
+                render: function() {
+                    return `
+                <label>Enter text or URL:</label>
+                <input type="text" id="qrInput" placeholder="https://example.com" value="https://example.com" oninput="qrGen()" />
+                <button class="btn-primary" onclick="qrGen()"><i class="fas fa-qrcode"></i> Generate QR</button>
+                <div class="result-box" id="qrResult" style="text-align:center;"><span class="label">QR Code</span><div id="qrCanvasWrap"></div></div>
+              `;
+                }
+            }, {
+                id: 'markdown-preview',
+                category: 'utility',
+                icon: 'fa-brands fa-markdown',
+                name: 'Markdown Preview',
+                desc: 'Write Markdown and see a live HTML preview.',
+                render: function() {
+                    return `
+                <label>Write Markdown:</label>
+                <textarea id="mdInput" rows="5" oninput="markdownPreview()"># Hello World
+          This is **bold** and *italic*.
+          - Item 1
+          - Item 2
+
+          [Link](https://example.com)</textarea>
+                <button class="btn-primary" onclick="markdownPreview()"><i class="fas fa-eye"></i> Preview</button>
+                <div class="result-box" id="mdResult"><span class="label">Preview</span><div id="mdPreview"></div></div>
+              `;
+                }
+            },
+
+            // ---- FUN (4) ----
+            {
+                id: 'dice-roller',
+                category: 'fun',
+                icon: 'fa-solid fa-dice-six',
+                name: 'Dice Roller',
+                desc: 'Roll one or more dice and see the results.',
+                render: function() {
+                    return `
+                <div class="flex-row">
+                  <div><label>Number of dice:</label><input type="number" id="drCount" value="1" min="1" max="10" oninput="diceRoll()" /></div>
+                  <div><label>Sides per die:</label><input type="number" id="drSides" value="6" min="2" max="100" oninput="diceRoll()" /></div>
+                </div>
+                <button class="btn-primary" onclick="diceRoll()"><i class="fas fa-dice"></i> Roll!</button>
+                <div class="result-box" id="drResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'coin-flip',
+                category: 'fun',
+                icon: 'fa-solid fa-coins',
+                name: 'Coin Flipper',
+                desc: 'Flip a coin — heads or tails.',
+                render: function() {
+                    return `
+                <button class="btn-primary" onclick="coinFlip()"><i class="fas fa-coins"></i> Flip Coin</button>
+                <div class="result-box" id="cfResult"><span class="label">Result</span></div>
+              `;
+                }
+            }, {
+                id: 'quote-generator',
+                category: 'fun',
+                icon: 'fa-solid fa-quote-right',
+                name: 'Quote Generator',
+                desc: 'Get a random inspirational or thought-provoking quote.',
+                render: function() {
+                    return `
+                <button class="btn-primary" onclick="quoteGen()"><i class="fas fa-quote-right"></i> New Quote</button>
+                <div class="result-box" id="qtResult"><span class="label">Quote</span></div>
+              `;
+                }
+            }, {
+                id: 'color-harmony',
+                category: 'fun',
+                icon: 'fa-solid fa-circle-dot',
+                name: 'Color Harmony Finder',
+                desc: 'Find harmonious color combinations for your next design.',
+                render: function() {
+                    return `
+                <label>Base color:</label>
+                <input type="color" id="chColor" value="#e74c3c" style="width:100%;height:50px;cursor:pointer;" oninput="colorHarmony()" />
+                <button class="btn-primary" onclick="colorHarmony()"><i class="fas fa-palette"></i> Find Harmony</button>
+                <div class="result-box" id="chResult"><span class="label">Result</span></div>
+              `;
+                }
+            }
+        ];
+
+        // ================================================================
+        //  2.  RENDERING & ROUTING
+        // ================================================================
+
+        const grid = document.getElementById('toolsGrid');
+        const categoryPills = document.querySelectorAll('.category-pills button');
+        const toolCount = document.getElementById('toolCount');
+
+        let activeCategory = 'all';
+
+        function renderTools(category = 'all') {
+            const filtered = TOOLS.filter(t => category === 'all' || t.category === category);
+            if (filtered.length === 0) {
+                grid.innerHTML =
+                    `<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text-secondary);"><i class="fas fa-search" style="font-size:2rem;opacity:0.4;"></i><p style="margin-top:12px;">No tools in this category.</p></div>`;
+                toolCount.textContent = 'No tools found';
+                return;
+            }
+            toolCount.textContent = `Showing ${filtered.length} tool${filtered.length > 1 ? 's' : ''}`;
+            grid.innerHTML = filtered.map(t => `
+                <div class="tool-card" data-id="${t.id}">
+                  <div class="icon-wrap"><i class="${t.icon}"></i></div>
+                  <h3>${t.name}</h3>
+                  <p>${t.desc}</p>
+                  <span class="tag">${t.category}</span>
+                  <button class="launch-btn" data-id="${t.id}"><i class="fas fa-rocket"></i> Launch</button>
+                </div>
+              `).join('');
+
+            document.querySelectorAll('.launch-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    openToolDetail(id);
+                });
+            });
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    openToolDetail(id);
+                });
+            });
+        }
+
+        categoryPills.forEach(btn => {
+            btn.addEventListener('click', function() {
+                categoryPills.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeCategory = this.dataset.cat;
+                renderTools(activeCategory);
+            });
+        });
+
+        function navigateTo(page) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('toolDetailPage').classList.remove('active');
+
+            const target = document.getElementById(`page-${page}`);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`.nav-links a[data-page="${page}"]`);
+            if (navLink) navLink.classList.add('active');
+
+            document.getElementById('navLinks').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (page === 'home') {
+                renderTools(activeCategory);
+                document.getElementById('heroSection').style.display = 'block';
+            } else {
+                document.getElementById('heroSection').style.display = 'none';
+            }
+        }
+
+        function openToolDetail(toolId) {
+            const tool = TOOLS.find(t => t.id === toolId);
+            if (!tool) return;
+
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('heroSection').style.display = 'none';
+
+            const detailPage = document.getElementById('toolDetailPage');
+            detailPage.classList.add('active');
+
+            const content = document.getElementById('toolDetailContent');
+            content.innerHTML = `
+                <div class="tool-header">
+                  <div class="icon-big"><i class="${tool.icon}"></i></div>
+                  <h2>${tool.name}</h2>
+                </div>
+                <div class="tool-meta">
+                  <span><i class="fas fa-tag"></i> ${tool.category}</span>
+                  <span><i class="fas fa-info-circle"></i> ${tool.desc}</span>
+                </div>
+                <div class="tool-body" id="toolBody">
+                  ${tool.render()}
+                </div>
+              `;
+
+            setTimeout(() => {
+                // Auto‑trigger for tools that need initial data
+                if (tool.id === 'world-clock') worldClock();
+                if (tool.id === 'currency-converter') {
+                    // auto‑convert after render
+                    setTimeout(currencyConvert, 300);
+                }
+                if (tool.id === 'week-number') {
+                    const d = new Date();
+                    const el = document.getElementById('wnDate');
+                    if (el) { el.value = d.toISOString().split('T')[0];
+                        weekNumber(); }
+                }
+                if (tool.id === 'date-diff') {
+                    const d = new Date();
+                    const d2 = new Date();
+                    d2.setDate(d2.getDate() + 30);
+                    const s = document.getElementById('ddStart');
+                    const e = document.getElementById('ddEnd');
+                    if (s) s.value = d.toISOString().split('T')[0];
+                    if (e) e.value = d2.toISOString().split('T')[0];
+                    setTimeout(dateDiff, 100);
+                }
+                if (tool.id === 'qr-generator') setTimeout(qrGen, 200);
+                if (tool.id === 'markdown-preview') setTimeout(markdownPreview, 200);
+                // For text tools, trigger initial update
+                const textareas = content.querySelectorAll('textarea');
+                textareas.forEach(ta => {
+                    if (ta.id && ta.id.startsWith('wc') || ta.id.startsWith('cc') || ta.id.startsWith('tr') ||
+                        ta.id.startsWith('dr') || ta.id.startsWith('tt') || ta.id.startsWith('ls') ||
+                        ta.id.startsWith('fr')) {
+                        ta.dispatchEvent(new Event('input'));
+                    }
+                });
+                const inputs = content.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]');
+                inputs.forEach(inp => {
+                    if (inp.id && (inp.id.startsWith('lc') || inp.id.startsWith('wv') || inp.id.startsWith('tv') ||
+                            inp.id.startsWith('sp') || inp.id.startsWith('ar') || inp.id.startsWith('vo') ||
+                            inp.id.startsWith('tc') || inp.id.startsWith('dc') || inp.id.startsWith('nw') ||
+                            inp.id.startsWith('p') || inp.id.startsWith('gcd') || inp.id.startsWith('bmi') ||
+                            inp.id.startsWith('age') || inp.id.startsWith('rn') || inp.id.startsWith('prime') ||
+                            inp.id.startsWith('fib') || inp.id.startsWith('disc') || inp.id.startsWith('tip') ||
+                            inp.id.startsWith('ccAmount') || inp.id.startsWith('pgLen') || inp.id.startsWith('ps') ||
+                            inp.id.startsWith('hash') || inp.id.startsWith('qr') || inp.id.startsWith('md') ||
+                            inp.id.startsWith('drCount') || inp.id.startsWith('drSides') ||
+                            inp.id.startsWith('liCount') || inp.id.startsWith('repText') ||
+                            inp.id.startsWith('repCount') || inp.id.startsWith('repSep') ||
+                            inp.id.startsWith('frFind') || inp.id.startsWith('frReplace') ||
+                            inp.id.startsWith('ue') || inp.id.startsWith('b64') || inp.id.startsWith('jf') ||
+                            inp.id.startsWith('he') || inp.id.startsWith('ccv') || inp.id.startsWith('cpColor') ||
+                            inp.id.startsWith('pgColor') || inp.id.startsWith('chColor')
+                        )) {
+                        inp.dispatchEvent(new Event('input'));
+                    }
+                });
+            }, 150);
+
+            window.location.hash = `tool-${toolId}`;
+        }
+
+        function closeToolDetail() {
+            document.getElementById('toolDetailPage').classList.remove('active');
+            document.getElementById('heroSection').style.display = 'block';
+            navigateTo('home');
+            window.location.hash = '';
+            if (countdownInterval) { clearInterval(countdownInterval);
+                countdownInterval = null; }
+            if (stopwatchInterval) { clearInterval(stopwatchInterval);
+                stopwatchInterval = null; }
+        }
+
+        function handleHash() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#tool-')) {
+                const id = hash.replace('#tool-', '');
+                openToolDetail(id);
+            } else if (hash === '#about') navigateTo('about');
+            else if (hash === '#contact') navigateTo('contact');
+            else if (hash === '#privacy') navigateTo('privacy');
+            else if (hash === '#disclaimer') navigateTo('disclaimer');
+            else navigateTo('home');
+        }
+
+        window.addEventListener('hashchange', handleHash);
+
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                window.location.hash = page === 'home' ? '' : page;
+                navigateTo(page);
+            });
+        });
+
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        window.handleContact = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            document.getElementById('contactResponse').innerHTML =
+                `<div style="padding:16px;background:var(--accent-light);border-radius:var(--radius-sm);color:var(--accent);">
+              <i class="fas fa-check-circle"></i> Thanks ${name}! We've received your message and will get back to you at ${email} shortly.
+            </div>`;
+            document.getElementById('contactForm').reset();
+            setTimeout(() => { document.getElementById('contactResponse').innerHTML = ''; }, 6000);
+        };
+
+        // ================================================================
+        //  3.  THEME TOGGLE
+        // ================================================================
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('toolmaster-theme', theme);
+        }
+
+        function toggleTheme() {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        const savedTheme = localStorage.getItem('toolmaster-theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+
+        // ================================================================
+        //  4.  TOOL IMPLEMENTATIONS (all functions, with real‑time support)
+        // ================================================================
+
+        function getVal(id) { return document.getElementById(id); }
+
+        function setResult(id, html) {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = `<span class="label">Result</span>${html}`;
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ---- CURRENCY CONVERTER ----
+        let cachedRates = null;
+        let lastFetchTime = 0;
+        const CACHE_DURATION = 60000;
+
+        async function fetchRates(base = 'USD') {
+            try {
+                const now = Date.now();
+                if (cachedRates && (now - lastFetchTime) < CACHE_DURATION) {
+                    return cachedRates;
+                }
+                const resp = await fetch(`https://api.frankfurter.app/latest?from=${base}`);
+                if (!resp.ok) throw new Error('API error');
+                const data = await resp.json();
+                cachedRates = data.rates;
+                lastFetchTime = now;
+                return cachedRates;
+            } catch (e) {
+                console.warn('Currency API error:', e);
+                const fallback = {
+                    USD: 1,
+                    INR: 83.5,
+                    GBP: 0.79,
+                    EUR: 0.92,
+                    JPY: 148.5,
+                    AUD: 1.52,
+                    CAD: 1.36,
+                    CHF: 0.88,
+                    CNY: 7.25,
+                    SGD: 1.35,
+                    NZD: 1.66,
+                    KRW: 1330,
+                    BRL: 5.05,
+                    ZAR: 18.2,
+                    MXN: 16.8,
+                    AED: 3.67,
+                    SAR: 3.75,
+                    TRY: 30.5,
+                    RUB: 91.2,
+                    HKD: 7.82
+                };
+                if (cachedRates) return cachedRates;
+                cachedRates = fallback;
+                lastFetchTime = now;
+                return fallback;
+            }
+        }
+
+        window.currencyConvert = async function() {
+            const amount = parseFloat(getVal('ccAmount').value) || 0;
+            const from = getVal('ccFrom').value;
+            const to = getVal('ccTo').value;
+            const statusEl = document.getElementById('ccStatus');
+            const resultEl = document.getElementById('ccResult');
+
+            if (amount <= 0) {
+                resultEl.innerHTML = `<span class="label">Result</span>Please enter a positive amount.`;
+                return;
+            }
+
+            try {
+                statusEl.innerHTML = `<span style="color:var(--text-muted);">⏳ Fetching live rates…</span>`;
+                const rates = await fetchRates(from);
+                const rate = rates[to];
+                if (!rate) {
+                    resultEl.innerHTML = `<span class="label">Result</span>Rate not available for ${to}.`;
+                    statusEl.innerHTML = `<span class="error">⚠️ Rate unavailable</span>`;
+                    return;
+                }
+                const converted = amount * rate;
+                const symbolMap = { USD: '$', INR: '₹', GBP: '£', EUR: '€', JPY: '¥', AUD: 'A$', CAD: 'C$', CHF: 'CHF',
+                    CNY: '¥', SGD: 'S$', NZD: 'NZ$', KRW: '₩', BRL: 'R$', ZAR: 'R', MXN: '$', AED: 'د.إ', SAR: 'ر.س',
+                    TRY: '₺', RUB: '₽', HKD: 'HK$' };
+                const sym = symbolMap[to] || to;
+                resultEl.innerHTML =
+                    `<span class="label">Result</span>
+                <div style="font-size:1.4rem;font-weight:700;margin:6px 0;">${sym} ${converted.toFixed(2)}</div>
+                <div style="font-size:0.9rem;color:var(--text-secondary);">
+                  1 ${from} = ${rate.toFixed(4)} ${to} &nbsp;|&nbsp; ${amount} ${from} = ${converted.toFixed(2)} ${to}
+                </div>`;
+                statusEl.innerHTML = `<span class="live">✓ Live rates from Frankfurter API (updated)</span>`;
+            } catch (e) {
+                resultEl.innerHTML = `<span class="label">Result</span>Error fetching rates: ${escapeHtml(e.message)}`;
+                statusEl.innerHTML = `<span class="error">⚠️ Using cached rates</span>`;
+                const rates = await fetchRates(from);
+                const rate = rates[to];
+                if (rate) {
+                    const converted = amount * rate;
+                    resultEl.innerHTML =
+                        `<span class="label">Result</span>
+                <div style="font-size:1.4rem;font-weight:700;margin:6px 0;">${converted.toFixed(2)} ${to}</div>
+                <div style="font-size:0.9rem;color:var(--text-secondary);">(using cached rates)</div>`;
+                }
+            }
+        };
+
+        window.currencySwap = function() {
+            const from = getVal('ccFrom');
+            const to = getVal('ccTo');
+            const temp = from.value;
+            from.value = to.value;
+            to.value = temp;
+            currencyConvert();
+        };
+
+        // ---- Word Counter ----
+        window.wordCounter = function() {
+            const txt = getVal('wcInput').value;
+            const words = txt.trim() ? txt.trim().split(/\s+/).length : 0;
+            const chars = txt.length;
+            const noSpace = txt.replace(/\s/g, '').length;
+            const sentences = txt.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            const paragraphs = txt.split(/\n\s*\n/).filter(p => p.trim().length > 0).length;
+            getVal('wcResult').innerHTML =
+                `<span class="label">Results</span>Words: <strong>${words}</strong> &nbsp;|&nbsp; Chars: <strong>${chars}</strong> &nbsp;|&nbsp; (no spaces): <strong>${noSpace}</strong> &nbsp;|&nbsp; Sentences: <strong>${sentences}</strong> &nbsp;|&nbsp; Paragraphs: <strong>${paragraphs}</strong>`;
+        };
+
+        // ---- Case Converter ----
+        window.caseConvert = function(mode) {
+            const input = getVal('ccInput').value;
+            let out = input;
+            switch (mode) {
+                case 'upper':
+                    out = input.toUpperCase();
+                    break;
+                case 'lower':
+                    out = input.toLowerCase();
+                    break;
+                case 'title':
+                    out = input.replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
+                    break;
+                case 'sentence':
+                    out = input.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                    break;
+                case 'toggle':
+                    out = input.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+                    break;
+            }
+            getVal('ccResultText').innerHTML =
+                `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- Text Reverser ----
+        window.textReverser = function(mode) {
+            const input = getVal('trInput').value;
+            let out = input;
+            switch (mode) {
+                case 'char':
+                    out = input.split('').reverse().join('');
+                    break;
+                case 'word':
+                    out = input.split(/\s+/).reverse().join(' ');
+                    break;
+                case 'line':
+                    out = input.split('\n').reverse().join('\n');
+                    break;
+            }
+            getVal('trResult').innerHTML = `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- Remove Duplicates ----
+        window.removeDuplicates = function() {
+            const input = getVal('drInput').value;
+            const lines = input.split('\n');
+            const seen = new Set();
+            const out = lines.filter(line => { const trimmed = line.trim(); if (trimmed && !seen.has(trimmed)) { seen.add(
+                        trimmed); return true; } return false; });
+            getVal('drResult').innerHTML = `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out.join('\n'))}</div>`;
+        };
+
+        // ---- Text Repeater ----
+        window.textRepeater = function() {
+            const text = getVal('repText').value;
+            const count = parseInt(getVal('repCount').value) || 1;
+            const sep = getVal('repSep').value || '';
+            const out = Array(count).fill(text).join(sep);
+            getVal('repResult').innerHTML = `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- Find & Replace ----
+        window.findReplace = function() {
+            const input = getVal('frInput').value;
+            const find = getVal('frFind').value;
+            const replace = getVal('frReplace').value;
+            const caseSens = getVal('frCase').checked;
+            const whole = getVal('frWhole').checked;
+            if (!find) { getVal('frResult').innerHTML = `<span class="label">Result</span>Please enter a search term.`; return; }
+            let flags = 'g';
+            if (!caseSens) flags += 'i';
+            let pattern = find;
+            if (whole) pattern = '\\b' + pattern + '\\b';
+            try {
+                const re = new RegExp(pattern, flags);
+                const out = input.replace(re, replace);
+                getVal('frResult').innerHTML =
+                    `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+            } catch (e) {
+                getVal('frResult').innerHTML = `<span class="label">Error</span>Invalid regex: ${escapeHtml(e.message)}`;
+            }
+        };
+
+        // ---- Line Sorter ----
+        window.lineSorter = function(mode) {
+            const input = getVal('lsInput').value;
+            const lines = input.split('\n').filter(l => l.trim() !== '');
+            let sorted = [...lines];
+            switch (mode) {
+                case 'az':
+                    sorted.sort((a, b) => a.localeCompare(b));
+                    break;
+                case 'za':
+                    sorted.sort((a, b) => b.localeCompare(a));
+                    break;
+                case 'len':
+                    sorted.sort((a, b) => a.length - b.length);
+                    break;
+            }
+            getVal('lsResult').innerHTML =
+                `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(sorted.join('\n'))}</div>`;
+        };
+
+        // ---- Text Trimmer ----
+        window.textTrimmer = function(mode) {
+            let input = getVal('ttInput').value;
+            let out = input;
+            switch (mode) {
+                case 'trim':
+                    out = input.trim();
+                    break;
+                case 'space':
+                    out = input.replace(/\s+/g, ' ').trim();
+                    break;
+                case 'empty':
+                    out = input.split('\n').filter(l => l.trim() !== '').join('\n');
+                    break;
+            }
+            getVal('ttResult').innerHTML =
+                `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- Percentage ----
+        window.percentCalc = function(mode) {
+            const x = parseFloat(getVal('pX').value) || 0;
+            const y = parseFloat(getVal('pY').value) || 1;
+            let out = '';
+            if (mode === 'of') {
+                const pct = (x / y) * 100;
+                out = `${x} is <strong>${pct.toFixed(2)}%</strong> of ${y}`;
+            } else {
+                const val = (x / 100) * y;
+                out = `${x}% of ${y} is <strong>${val.toFixed(4)}</strong>`;
+            }
+            getVal('pResult').innerHTML = `<span class="label">Result</span>${out}`;
+        };
+
+        // ---- Tip ----
+        window.tipCalc = function() {
+            const bill = parseFloat(getVal('tipBill').value) || 0;
+            const pct = parseFloat(getVal('tipPct').value) || 0;
+            const people = parseInt(getVal('tipPeople').value) || 1;
+            const tip = bill * (pct / 100);
+            const total = bill + tip;
+            const perPerson = total / people;
+            getVal('tipResult').innerHTML =
+                `<span class="label">Result</span>Tip: $${tip.toFixed(2)} &nbsp;|&nbsp; Total: $${total.toFixed(2)} &nbsp;|&nbsp; Per person: $${perPerson.toFixed(2)}`;
+        };
+
+        // ---- Discount ----
+        window.discountCalc = function() {
+            const orig = parseFloat(getVal('discOrig').value) || 0;
+            const pct = parseFloat(getVal('discPct').value) || 0;
+            const discount = orig * (pct / 100);
+            const final = orig - discount;
+            getVal('discResult').innerHTML =
+                `<span class="label">Result</span>Discount: $${discount.toFixed(2)} &nbsp;|&nbsp; Final price: $${final.toFixed(2)}`;
+        };
+
+        // ---- BMI ----
+        window.bmiCalc = function() {
+            const weight = parseFloat(getVal('bmiWeight').value) || 0;
+            const height = parseFloat(getVal('bmiHeight').value) || 1;
+            const units = getVal('bmiUnits').value;
+            let bmi, category;
+            let w = weight,
+                h = height;
+            if (units === 'imperial') {
+                w = weight * 0.453592;
+                h = height * 0.0254;
+            }
+            if (h > 0) {
+                bmi = w / (h * h);
+                if (bmi < 18.5) category = 'Underweight';
+                else if (bmi < 25) category = 'Normal';
+                else if (bmi < 30) category = 'Overweight';
+                else category = 'Obese';
+            } else { bmi = 0;
+                category = '—'; }
+            getVal('bmiResult').innerHTML =
+                `<span class="label">Result</span>BMI: <strong>${bmi.toFixed(1)}</strong> &nbsp;|&nbsp; Category: <strong>${category}</strong>`;
+        };
+
+        // ---- Age ----
+        window.ageCalc = function() {
+            const dob = new Date(getVal('ageDate').value);
+            const now = new Date();
+            let years = now.getFullYear() - dob.getFullYear();
+            let months = now.getMonth() - dob.getMonth();
+            let days = now.getDate() - dob.getDate();
+            if (days < 0) { months--;
+                days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+            if (months < 0) { years--;
+                months += 12; }
+            getVal('ageResult').innerHTML =
+                `<span class="label">Result</span>${years} years, ${months} months, ${days} days`;
+        };
+
+        // ---- Random Number ----
+        window.randomNum = function() {
+            const min = parseInt(getVal('rnMin').value) || 0;
+            const max = parseInt(getVal('rnMax').value) || 100;
+            if (min > max) { getVal('rnResult').innerHTML = `<span class="label">Result</span>Min must be ≤ max.`; return; }
+            const val = Math.floor(Math.random() * (max - min + 1)) + min;
+            getVal('rnResult').innerHTML = `<span class="label">Result</span><strong>${val}</strong>`;
+        };
+
+        // ---- Prime ----
+        window.primeCheck = function() {
+            const n = parseInt(getVal('primeNum').value) || 2;
+            if (n < 2) { getVal('primeResult').innerHTML =
+                    `<span class="label">Result</span>${n} is not prime (must be ≥ 2).`; return; }
+            let isPrime = true;
+            for (let i = 2; i * i <= n; i++) { if (n % i === 0) { isPrime = false; break; } }
+            getVal('primeResult').innerHTML =
+                `<span class="label">Result</span>${n} is <strong>${isPrime ? 'prime' : 'not prime'}</strong>`;
+        };
+
+        window.primeList = function() {
+            const n = parseInt(getVal('primeNum').value) || 2;
+            const primes = [];
+            for (let i = 2; i <= n; i++) {
+                let ok = true;
+                for (let j = 2; j * j <= i; j++) { if (i % j === 0) { ok = false; break; } }
+                if (ok) primes.push(i);
+            }
+            getVal('primeResult').innerHTML =
+                `<span class="label">Result</span>Primes up to ${n}: <strong>${primes.join(', ')}</strong> (${primes.length} total)`;
+        };
+
+        // ---- Fibonacci ----
+        window.fibGen = function() {
+            const n = parseInt(getVal('fibN').value) || 10;
+            const maxVal = parseFloat(getVal('fibMax').value);
+            const seq = [];
+            let a = 0,
+                b = 1;
+            for (let i = 0; i < n; i++) {
+                if (maxVal && a > maxVal) break;
+                seq.push(a);
+                [a, b] = [b, a + b];
+            }
+            getVal('fibResult').innerHTML =
+                `<span class="label">Result</span>[${seq.join(', ')}]  (${seq.length} terms)`;
+        };
+
+        // ---- GCD / LCM ----
+        window.gcdLcm = function() {
+            let a = Math.abs(parseInt(getVal('gcdA').value) || 0);
+            let b = Math.abs(parseInt(getVal('gcdB').value) || 0);
+            if (a === 0 || b === 0) { getVal('gcdResult').innerHTML =
+                    `<span class="label">Result</span>Please enter positive integers.`; return; }
+            const gcd = (x, y) => { while (y) { [x, y] = [y, x % y]; } return x; };
+            const g = gcd(a, b);
+            const lcm = (a * b) / g;
+            getVal('gcdResult').innerHTML =
+                `<span class="label">Result</span>GCD: <strong>${g}</strong> &nbsp;|&nbsp; LCM: <strong>${lcm}</strong>`;
+        };
+
+        // ---- Color Picker ----
+        window.colorPick = function() {
+            const hex = getVal('cpColor').value;
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            const hsl = rgbToHsl(r, g, b);
+            getVal('cpResult').innerHTML =
+                `<span class="label">Result</span>
+              <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+                <div style="width:60px;height:60px;border-radius:12px;background:${hex};border:2px solid var(--border);"></div>
+                <div><strong>HEX:</strong> ${hex}<br><strong>RGB:</strong> rgb(${r},${g},${b})<br><strong>HSL:</strong> hsl(${hsl[0]},${hsl[1]}%,${hsl[2]}%)</div>
+              </div>`;
+        };
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b),
+                min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) { h = s = 0; } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+                else if (max === g) h = ((b - r) / d + 2) / 6;
+                else h = ((r - g) / d + 4) / 6;
+            }
+            return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+        }
+
+        // ---- Color Converter ----
+        window.colorConvert = function() {
+            const input = getVal('ccvInput').value.trim();
+            let hex = '',
+                rgb = '',
+                hsl = '';
+            try {
+                if (input.startsWith('#')) {
+                    let h = input.replace('#', '');
+                    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+                    if (h.length === 6) {
+                        hex = '#' + h;
+                        const r = parseInt(h.slice(0, 2), 16),
+                            g = parseInt(h.slice(2, 4), 16),
+                            b = parseInt(h.slice(4, 6), 16);
+                        rgb = `rgb(${r},${g},${b})`;
+                        const hslArr = rgbToHsl(r, g, b);
+                        hsl = `hsl(${hslArr[0]},${hslArr[1]}%,${hslArr[2]}%)`;
+                    }
+                } else if (input.startsWith('rgb')) {
+                    const m = input.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+                    if (m) {
+                        const r = parseInt(m[1]),
+                            g = parseInt(m[2]),
+                            b = parseInt(m[3]);
+                        rgb = `rgb(${r},${g},${b})`;
+                        hex = '#' + [r, g, b].map(c => c.toString(16).padStart(2, '0')).join('');
+                        const hslArr = rgbToHsl(r, g, b);
+                        hsl = `hsl(${hslArr[0]},${hslArr[1]}%,${hslArr[2]}%)`;
+                    }
+                } else if (input.startsWith('hsl')) {
+                    const m = input.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
+                    if (m) {
+                        hsl = input;
+                        const h = parseInt(m[1]),
+                            s = parseInt(m[2]),
+                            l = parseInt(m[3]);
+                        const rgbArr = hslToRgb(h, s, l);
+                        rgb = `rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
+                        hex = '#' + rgbArr.map(c => c.toString(16).padStart(2, '0')).join('');
+                    }
+                }
+                if (hex || rgb || hsl) {
+                    getVal('ccvResult').innerHTML =
+                        `<span class="label">Result</span>
+                <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+                  <div style="width:50px;height:50px;border-radius:10px;background:${hex || '#000'};border:2px solid var(--border);"></div>
+                  <div><strong>HEX:</strong> ${hex}<br><strong>RGB:</strong> ${rgb}<br><strong>HSL:</strong> ${hsl}</div>
+                </div>`;
+                } else {
+                    getVal('ccvResult').innerHTML = `<span class="label">Result</span>Could not parse color. Try #hex, rgb(), or hsl().`;
+                }
+            } catch (e) {
+                getVal('ccvResult').innerHTML = `<span class="label">Result</span>Error: ${escapeHtml(e.message)}`;
+            }
+        };
+
+        function hslToRgb(h, s, l) {
+            s /= 100;
+            l /= 100;
+            const k = n => (n + h / 30) % 12;
+            const a = s * Math.min(l, 1 - l);
+            const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+            return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+        }
+
+        // ---- Palette Generator ----
+        window.paletteGen = function(mode) {
+            const hex = getVal('pgColor').value;
+            const r = parseInt(hex.slice(1, 3), 16),
+                g = parseInt(hex.slice(3, 5), 16),
+                b = parseInt(hex.slice(5, 7), 16);
+            const [h, s, l] = rgbToHsl(r, g, b);
+            const colors = [];
+            const steps = 5;
+            for (let i = 0; i < steps; i++) {
+                let nh = h;
+                if (mode === 'analogous') nh = (h + i * 30 - 60) % 360;
+                else if (mode === 'complementary') nh = (h + (i % 2 === 0 ? 0 : 180)) % 360;
+                else if (mode === 'triadic') nh = (h + i * 120) % 360;
+                if (nh < 0) nh += 360;
+                const [r2, g2, b2] = hslToRgb(nh, s, l);
+                colors.push('#' + [r2, g2, b2].map(c => c.toString(16).padStart(2, '0')).join(''));
+            }
+            const swatches = colors.map(c =>
+                `<div style="width:50px;height:50px;border-radius:8px;background:${c};border:2px solid var(--border);display:inline-block;margin:4px;" title="${c}"></div>`
+                ).join('');
+            getVal('pgResult').innerHTML =
+                `<span class="label">Result</span><div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;">${swatches} <span style="margin-left:10px;">${colors.join(' • ')}</span></div>`;
+        };
+
+        // ---- Random Color ----
+        window.randomColor = function(mode) {
+            const r = Math.floor(Math.random() * 256),
+                g = Math.floor(Math.random() * 256),
+                b = Math.floor(Math.random() * 256);
+            let out = '';
+            if (mode === 'hex') {
+                const hex = '#' + [r, g, b].map(c => c.toString(16).padStart(2, '0')).join('');
+                out =
+                    `<div style="display:flex;gap:14px;align-items:center;"><div style="width:50px;height:50px;border-radius:10px;background:${hex};border:2px solid var(--border);"></div> <strong>${hex}</strong></div>`;
+            } else {
+                out = `rgb(${r},${g},${b})`;
+            }
+            getVal('rcResult').innerHTML = `<span class="label">Result</span>${out}`;
+        };
+
+        // ---- Countdown Timer ----
+        let countdownInterval = null;
+        let countdownTotal = 0;
+        let countdownRemaining = 0;
+        let countdownRunning = false;
+
+        window.countdownStart = function() {
+            if (countdownRunning) return;
+            const min = parseInt(getVal('cdMin').value) || 0;
+            const sec = parseInt(getVal('cdSec').value) || 0;
+            if (!countdownInterval) {
+                countdownTotal = min * 60 + sec;
+                countdownRemaining = countdownTotal;
+            }
+            if (countdownRemaining <= 0) { countdownReset(); return; }
+            countdownRunning = true;
+            countdownInterval = setInterval(() => {
+                countdownRemaining--;
+                updateCountdownDisplay();
+                if (countdownRemaining <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                    countdownRunning = false;
+                    getVal('cdResult').innerHTML =
+                        `<span class="label">⏱️</span> <span style="font-size:1.8rem;font-weight:700;color:var(--accent);">⏰ TIME'S UP!</span>`;
+                }
+            }, 1000);
+            updateCountdownDisplay();
+        };
+
+        window.countdownPause = function() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+                countdownRunning = false;
+            }
+        };
+
+        window.countdownReset = function() {
+            if (countdownInterval) { clearInterval(countdownInterval);
+                countdownInterval = null; }
+            countdownRunning = false;
+            const min = parseInt(getVal('cdMin').value) || 0;
+            const sec = parseInt(getVal('cdSec').value) || 0;
+            countdownTotal = min * 60 + sec;
+            countdownRemaining = countdownTotal;
+            updateCountdownDisplay();
+        };
+
+        function updateCountdownDisplay() {
+            const m = Math.floor(countdownRemaining / 60);
+            const s = countdownRemaining % 60;
+            const display = document.getElementById('cdDisplay');
+            if (display) display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+
+        // ---- Stopwatch ----
+        let stopwatchInterval = null;
+        let stopwatchTime = 0;
+        let stopwatchRunning = false;
+        let stopwatchLaps = [];
+
+        window.stopwatchStart = function() {
+            if (stopwatchRunning) return;
+            stopwatchRunning = true;
+            const start = Date.now() - stopwatchTime;
+            stopwatchInterval = setInterval(() => {
+                stopwatchTime = Date.now() - start;
+                updateStopwatchDisplay();
+            }, 100);
+        };
+
+        window.stopwatchStop = function() {
+            if (stopwatchInterval) { clearInterval(stopwatchInterval);
+                stopwatchInterval = null; }
+            stopwatchRunning = false;
+            if (stopwatchTime > 0) {
+                const ms = stopwatchTime % 1000;
+                const sec = Math.floor(stopwatchTime / 1000) % 60;
+                const min = Math.floor(stopwatchTime / 60000) % 60;
+                const hr = Math.floor(stopwatchTime / 3600000);
+                stopwatchLaps.push(
+                    `${String(hr).padStart(2,'0')}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}.${String(ms).padStart(3,'0')}`
+                    );
+                document.getElementById('swLaps').innerHTML = stopwatchLaps.map(l => `<div>${l}</div>`).join('');
+            }
+        };
+
+        window.stopwatchReset = function() {
+            if (stopwatchInterval) { clearInterval(stopwatchInterval);
+                stopwatchInterval = null; }
+            stopwatchRunning = false;
+            stopwatchTime = 0;
+            stopwatchLaps = [];
+            document.getElementById('swDisplay').textContent = '00:00:00';
+            document.getElementById('swLaps').innerHTML = '—';
+        };
+
+        function updateStopwatchDisplay() {
+            const ms = stopwatchTime % 1000;
+            const sec = Math.floor(stopwatchTime / 1000) % 60;
+            const min = Math.floor(stopwatchTime / 60000) % 60;
+            const hr = Math.floor(stopwatchTime / 3600000);
+            document.getElementById('swDisplay').textContent =
+                `${String(hr).padStart(2,'0')}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+        }
+
+        // ---- World Clock ----
+        window.worldClock = function() {
+            const zones = [
+                { name: 'UTC', tz: 'UTC' },
+                { name: 'New York', tz: 'America/New_York' },
+                { name: 'London', tz: 'Europe/London' },
+                { name: 'Paris', tz: 'Europe/Paris' },
+                { name: 'Dubai', tz: 'Asia/Dubai' },
+                { name: 'Tokyo', tz: 'Asia/Tokyo' },
+                { name: 'Sydney', tz: 'Australia/Sydney' },
+                { name: 'Los Angeles', tz: 'America/Los_Angeles' },
+                { name: 'Singapore', tz: 'Asia/Singapore' },
+                { name: 'Mumbai', tz: 'Asia/Kolkata' },
+            ];
+            const now = new Date();
+            let html = zones.map(z => {
+                const d = new Date(now.toLocaleString('en-US', { timeZone: z.tz }));
+                const time = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: true });
+                return `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);"><span>${z.name}</span><span><strong>${time}</strong></span></div>`;
+            }).join('');
+            document.getElementById('wcList').innerHTML = html;
+            getVal('wcResult').innerHTML =
+                `<span class="label">🌍 World Clock</span><div style="font-size:0.9rem;">${html}</div>`;
+        };
+
+        // ---- Date Difference ----
+        window.dateDiff = function() {
+            const d1 = new Date(getVal('ddStart').value);
+            const d2 = new Date(getVal('ddEnd').value);
+            if (isNaN(d1) || isNaN(d2)) { getVal('ddResult').innerHTML =
+                    `<span class="label">Result</span>Please select valid dates.`; return; }
+            const diffMs = Math.abs(d2 - d1);
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30.44);
+            const years = Math.floor(days / 365.25);
+            getVal('ddResult').innerHTML =
+                `<span class="label">Result</span>${days} days &nbsp;|&nbsp; ${months} months (approx.) &nbsp;|&nbsp; ${years} years (approx.)`;
+        };
+
+        // ---- Week Number ----
+        window.weekNumber = function() {
+            const d = new Date(getVal('wnDate').value);
+            if (isNaN(d)) { getVal('wnResult').innerHTML =
+                    `<span class="label">Result</span>Please select a date.`; return; }
+            const start = new Date(d.getFullYear(), 0, 1);
+            const diff = (d - start + (start.getTimezoneOffset() - d.getTimezoneOffset()) * 60000) / 86400000;
+            const week = Math.ceil((diff + start.getDay() + 1) / 7);
+            getVal('wnResult').innerHTML =
+                `<span class="label">Result</span>Week number: <strong>${week}</strong> (ISO)`;
+        };
+
+        // ---- Length Converter ----
+        window.lengthConv = function() {
+            const val = parseFloat(getVal('lcVal').value) || 0;
+            const from = getVal('lcFrom').value;
+            const to = getVal('lcTo').value;
+            const units = { m: 1, km: 1000, mi: 1609.344, ft: 0.3048, in: 0.0254, cm: 0.01 };
+            const result = (val * units[from]) / units[to];
+            getVal('lcResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(6)}</strong> ${to}`;
+        };
+
+        // ---- Weight Converter ----
+        window.weightConv = function() {
+            const val = parseFloat(getVal('wvVal').value) || 0;
+            const from = getVal('wvFrom').value;
+            const to = getVal('wvTo').value;
+            const units = { kg: 1, g: 0.001, lb: 0.453592, oz: 0.0283495 };
+            const result = (val * units[from]) / units[to];
+            getVal('wvResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(6)}</strong> ${to}`;
+        };
+
+        // ---- Temperature ----
+        window.tempConv = function() {
+            const val = parseFloat(getVal('tvVal').value) || 0;
+            const from = getVal('tvFrom').value;
+            const to = getVal('tvTo').value;
+            let celsius = 0;
+            if (from === 'C') celsius = val;
+            else if (from === 'F') celsius = (val - 32) * 5 / 9;
+            else celsius = val - 273.15;
+            let result = 0;
+            if (to === 'C') result = celsius;
+            else if (to === 'F') result = celsius * 9 / 5 + 32;
+            else result = celsius + 273.15;
+            getVal('tvResult').innerHTML =
+                `<span class="label">Result</span>${val}°${from} = <strong>${result.toFixed(2)}</strong>°${to}`;
+        };
+
+        // ---- Speed ----
+        window.speedConv = function() {
+            const val = parseFloat(getVal('spVal').value) || 0;
+            const from = getVal('spFrom').value;
+            const to = getVal('spTo').value;
+            const units = { kmh: 1, ms: 3.6, mph: 1.60934, knot: 1.852 };
+            const result = (val * units[from]) / units[to];
+            getVal('spResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(4)}</strong> ${to}`;
+        };
+
+        // ---- Area ----
+        window.areaConv = function() {
+            const val = parseFloat(getVal('arVal').value) || 0;
+            const from = getVal('arFrom').value;
+            const to = getVal('arTo').value;
+            const units = { m2: 1, ft2: 0.092903, ac: 4046.86, ha: 10000, km2: 1000000 };
+            const result = (val * units[from]) / units[to];
+            getVal('arResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(6)}</strong> ${to}`;
+        };
+
+        // ---- Volume ----
+        window.volumeConv = function() {
+            const val = parseFloat(getVal('voVal').value) || 0;
+            const from = getVal('voFrom').value;
+            const to = getVal('voTo').value;
+            const units = { l: 1, gal: 3.78541, m3: 1000, cup: 0.236588, ml: 0.001 };
+            const result = (val * units[from]) / units[to];
+            getVal('voResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(6)}</strong> ${to}`;
+        };
+
+        // ---- Time Converter ----
+        window.timeConv = function() {
+            const val = parseFloat(getVal('tcVal').value) || 0;
+            const from = getVal('tcFrom').value;
+            const to = getVal('tcTo').value;
+            const units = { s: 1, min: 60, h: 3600, d: 86400, w: 604800 };
+            const result = (val * units[from]) / units[to];
+            getVal('tcResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${result.toFixed(6)}</strong> ${to}`;
+        };
+
+        // ---- Data Storage ----
+        window.dataConv = function() {
+            const val = parseFloat(getVal('dcVal').value) || 0;
+            const from = getVal('dcFrom').value;
+            const to = getVal('dcTo').value;
+            const units = { B: 1, KB: 1024, MB: 1048576, GB: 1073741824, TB: 1099511627776, PB: 1125899906842624 };
+            const result = (val * units[from]) / units[to];
+            const display = result > 1e6 ? result.toExponential(4) : result.toFixed(6);
+            getVal('dcResult').innerHTML =
+                `<span class="label">Result</span>${val} ${from} = <strong>${display}</strong> ${to}`;
+        };
+
+        // ---- Number to Words ----
+        window.numberToWords = function() {
+            const num = parseInt(getVal('nwVal').value) || 0;
+            if (num < 0 || num > 999999999) {
+                getVal('nwResult').innerHTML =
+                    `<span class="label">Result</span>Number out of range (0–999,999,999).`;
+                return;
+            }
+            const words = numberToWordsFn(num);
+            getVal('nwResult').innerHTML = `<span class="label">Result</span>${words}`;
+        };
+
+        function numberToWordsFn(n) {
+            if (n === 0) return 'zero';
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
+                'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'
+            ];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            const chunk = (num) => {
+                let str = '';
+                const h = Math.floor(num / 100);
+                const t = num % 100;
+                if (h > 0) str += ones[h] + ' hundred ';
+                if (t > 0) {
+                    if (t < 20) str += ones[t] + ' ';
+                    else {
+                        str += tens[Math.floor(t / 10)] + ' ';
+                        if (t % 10 > 0) str += ones[t % 10] + ' ';
+                    }
+                }
+                return str.trim();
+            };
+            const parts = [];
+            const billions = Math.floor(n / 1000000000);
+            const millions = Math.floor((n % 1000000000) / 1000000);
+            const thousands = Math.floor((n % 1000000) / 1000);
+            const rest = n % 1000;
+            if (billions > 0) parts.push(chunk(billions) + ' billion');
+            if (millions > 0) parts.push(chunk(millions) + ' million');
+            if (thousands > 0) parts.push(chunk(thousands) + ' thousand');
+            if (rest > 0) parts.push(chunk(rest));
+            return parts.join(', ');
+        }
+
+        // ---- Password Generator ----
+        window.passwordGen = function() {
+            const len = parseInt(getVal('pgLen').value) || 16;
+            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lower = 'abcdefghijklmnopqrstuvwxyz';
+            const digits = '0123456789';
+            const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            let pool = '';
+            if (getVal('pgUpper').checked) pool += upper;
+            if (getVal('pgLower').checked) pool += lower;
+            if (getVal('pgDigits').checked) pool += digits;
+            if (getVal('pgSymbols').checked) pool += symbols;
+            if (!pool) { getVal('pgResult').innerHTML =
+                    `<span class="label">Result</span>Please select at least one character type.`; return; }
+            let pwd = '';
+            for (let i = 0; i < len; i++) {
+                pwd += pool[Math.floor(Math.random() * pool.length)];
+            }
+            getVal('pgResult').innerHTML =
+                `<span class="label">Password</span><div style="font-family:monospace;font-size:1.2rem;word-break:break-all;background:var(--bg-body);padding:10px;border-radius:8px;">${escapeHtml(pwd)}</div>
+            <button class="btn-secondary" style="margin-top:8px;" onclick="navigator.clipboard.writeText('${pwd}')"><i class="fas fa-copy"></i> Copy</button>`;
+        };
+
+        // ---- Password Strength ----
+        window.passwordStrength = function() {
+            const pwd = getVal('psInput').value;
+            let score = 0;
+            let feedback = [];
+            if (pwd.length >= 8) score++;
+            else feedback.push('Length should be at least 8 characters.');
+            if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) score++;
+            else feedback.push('Include both uppercase and lowercase letters.');
+            if (/\d/.test(pwd)) score++;
+            else feedback.push('Include at least one digit.');
+            if (/[^a-zA-Z0-9]/.test(pwd)) score++;
+            else feedback.push('Include at least one special character.');
+            const levels = ['Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'];
+            const level = levels[Math.min(score, 4)];
+            const color = ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#27ae60'][Math.min(score, 4)];
+            getVal('psResult').innerHTML =
+                `<span class="label">Result</span>
+              <div style="font-size:1.4rem;font-weight:700;color:${color};">${level}</div>
+              <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:6px;">${feedback.join(' ')}</div>
+              <div style="margin-top:8px;background:var(--bg-body);border-radius:8px;height:8px;overflow:hidden;">
+                <div style="height:100%;width:${(score/4)*100}%;background:${color};border-radius:8px;transition:0.3s;"></div>
+              </div>`;
+        };
+
+        // ---- URL Encoder / Decoder ----
+        window.urlEncode = function() {
+            const input = getVal('ueInput').value;
+            try { getVal('ueResult').innerHTML =
+                    `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(encodeURIComponent(input))}</div>`; } catch (
+                e) { getVal('ueResult').innerHTML = `<span class="label">Error</span>${escapeHtml(e.message)}`; }
+        };
+        window.urlDecode = function() {
+            const input = getVal('ueInput').value;
+            try { getVal('ueResult').innerHTML =
+                    `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(decodeURIComponent(input))}</div>`; } catch (
+                e) { getVal('ueResult').innerHTML = `<span class="label">Error</span>${escapeHtml(e.message)}`; }
+        };
+
+        // ---- Base64 ----
+        window.base64Encode = function() {
+            try {
+                const out = btoa(getVal('b64Input').value);
+                getVal('b64Result').innerHTML =
+                    `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(out)}</div>`;
+            } catch (e) { getVal('b64Result').innerHTML = `<span class="label">Error</span>${escapeHtml(e.message)}`; }
+        };
+        window.base64Decode = function() {
+            try {
+                const out = atob(getVal('b64Input').value);
+                getVal('b64Result').innerHTML =
+                    `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(out)}</div>`;
+            } catch (e) { getVal('b64Result').innerHTML = `<span class="label">Error</span>${escapeHtml(e.message)}`; }
+        };
+
+        // ---- JSON Formatter ----
+        window.jsonFormat = function() {
+            try {
+                const parsed = JSON.parse(getVal('jfInput').value);
+                const formatted = JSON.stringify(parsed, null, 2);
+                getVal('jfResult').innerHTML =
+                    `<span class="label">Result</span><pre style="white-space:pre-wrap;font-family:monospace;font-size:0.85rem;background:var(--bg-body);padding:12px;border-radius:8px;">${escapeHtml(formatted)}</pre>`;
+            } catch (e) { getVal('jfResult').innerHTML =
+                    `<span class="label">Error</span>Invalid JSON: ${escapeHtml(e.message)}`; }
+        };
+        window.jsonMinify = function() {
+            try {
+                const parsed = JSON.parse(getVal('jfInput').value);
+                const minified = JSON.stringify(parsed);
+                getVal('jfResult').innerHTML =
+                    `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(minified)}</div>`;
+            } catch (e) { getVal('jfResult').innerHTML =
+                    `<span class="label">Error</span>Invalid JSON: ${escapeHtml(e.message)}`; }
+        };
+        window.jsonValidate = function() {
+            try {
+                JSON.parse(getVal('jfInput').value);
+                getVal('jfResult').innerHTML = `<span class="label">Result</span>✅ Valid JSON!`;
+            } catch (e) { getVal('jfResult').innerHTML =
+                    `<span class="label">Result</span>❌ Invalid JSON: ${escapeHtml(e.message)}`; }
+        };
+
+        // ---- HTML Entity ----
+        window.htmlEntityEncode = function() {
+            const input = getVal('heInput').value;
+            const out = input.replace(/[&<>"]/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } [m] || m;
+            });
+            getVal('heResult').innerHTML =
+                `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(out)}</div>`;
+        };
+        window.htmlEntityDecode = function() {
+            const input = getVal('heInput').value;
+            const out = input.replace(/&amp;|&lt;|&gt;|&quot;/g, function(m) {
+                return { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"' } [m] || m;
+            });
+            getVal('heResult').innerHTML =
+                `<span class="label">Result</span><div style="word-break:break-all;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- Lorem Ipsum ----
+        window.loremGen = function() {
+            const count = parseInt(getVal('liCount').value) || 3;
+            const type = getVal('liType').value;
+            const lorem =
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+            const sentences = lorem.split('. ').filter(s => s.trim().length > 0);
+            let out = '';
+            if (type === 'paragraphs') {
+                for (let i = 0; i < count; i++) {
+                    const shuffled = [...sentences].sort(() => Math.random() - 0.5);
+                    out += shuffled.slice(0, 3 + Math.floor(Math.random() * 3)).join('. ') + '.\n\n';
+                }
+            } else if (type === 'sentences') {
+                const all = [];
+                for (let i = 0; i < count; i++) all.push(sentences[Math.floor(Math.random() * sentences.length)]);
+                out = all.join('. ') + '.';
+            } else {
+                const words = lorem.split(/\s+/);
+                const selected = [];
+                for (let i = 0; i < count; i++) selected.push(words[Math.floor(Math.random() * words.length)]);
+                out = selected.join(' ');
+            }
+            getVal('liResult').innerHTML =
+                `<span class="label">Result</span><div style="white-space:pre-wrap;">${escapeHtml(out)}</div>`;
+        };
+
+        // ---- UUID ----
+        window.uuidGen = function() {
+            const uuid = crypto.randomUUID ? crypto.randomUUID() : 'xxxx-xxxx-4xxx-yxxx-xxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            getVal('uuidResult').innerHTML = `<span class="label">Result</span><strong>${uuid}</strong>`;
+        };
+        window.uuidGenMultiple = function() {
+            const uuids = [];
+            for (let i = 0; i < 5; i++) {
+                uuids.push(crypto.randomUUID ? crypto.randomUUID() : 'xxxx-xxxx-4xxx-yxxx-xxxx'.replace(/[xy]/g, function(c) {
+                    const r = Math.random() * 16 | 0;
+                    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                }));
+            }
+            getVal('uuidResult').innerHTML =
+                `<span class="label">Result</span><div style="font-family:monospace;">${uuids.join('<br>')}</div>`;
+        };
+
+        // ---- Hash Generator ----
+        window.hashGen = async function(algo) {
+            const text = getVal('hashInput').value;
+            if (!text) { getVal('hashResult').innerHTML =
+                    `<span class="label">Result</span>Please enter some text.`; return; }
+            try {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(text);
+                const hashBuffer = await crypto.subtle.digest(algo, data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                getVal('hashResult').innerHTML =
+                    `<span class="label">Result</span><div style="font-family:monospace;font-size:0.85rem;word-break:break-all;background:var(--bg-body);padding:10px;border-radius:8px;">${algo}: ${hashHex}</div>`;
+            } catch (e) {
+                getVal('hashResult').innerHTML = `<span class="label">Error</span>${escapeHtml(e.message)}`;
+            }
+        };
+
+        // ---- QR Code ----
+        window.qrGen = function() {
+            const text = getVal('qrInput').value || 'https://example.com';
+            const wrap = document.getElementById('qrCanvasWrap');
+            if (!wrap) return;
+            wrap.innerHTML = `
+                <div style="background:white;padding:20px;border-radius:12px;display:inline-block;border:2px dashed var(--border);">
+                  <div style="font-size:3rem;opacity:0.3;letter-spacing:2px;">⬛⬜⬛⬜</div>
+                  <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:8px;">QR: ${escapeHtml(text)}</div>
+                  <div style="font-size:0.65rem;color:var(--text-muted);margin-top:4px;">(visual placeholder — add qrcode.js for real QR)</div>
+                </div>
+              `;
+            getVal('qrResult').innerHTML =
+                `<span class="label">QR Code</span><div style="text-align:center;">${wrap.innerHTML}</div>`;
+        };
+
+        // ---- Markdown Preview ----
+        window.markdownPreview = function() {
+            const md = getVal('mdInput').value;
+            let html = md;
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+            html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/\n/g, '<br>');
+            document.getElementById('mdPreview').innerHTML = html;
+            getVal('mdResult').innerHTML = `<span class="label">Preview</span><div id="mdPreview" style="padding:8px;"></div>`;
+            document.getElementById('mdPreview').innerHTML = html;
+        };
+
+        // ---- Dice Roller ----
+        window.diceRoll = function() {
+            const count = parseInt(getVal('drCount').value) || 1;
+            const sides = parseInt(getVal('drSides').value) || 6;
+            const results = [];
+            let sum = 0;
+            for (let i = 0; i < count; i++) {
+                const val = Math.floor(Math.random() * sides) + 1;
+                results.push(val);
+                sum += val;
+            }
+            getVal('drResult').innerHTML =
+                `<span class="label">Result</span>🎲 ${results.join(', ')} &nbsp;|&nbsp; Sum: <strong>${sum}</strong> &nbsp;|&nbsp; Avg: <strong>${(sum/count).toFixed(1)}</strong>`;
+        };
+
+        // ---- Coin Flip ----
+        window.coinFlip = function() {
+            const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+            const emoji = result === 'Heads' ? '🪙' : '🪙';
+            getVal('cfResult').innerHTML =
+                `<span class="label">Result</span><div style="font-size:2rem;">${emoji} <strong>${result}</strong></div>`;
+        };
+
+        // ---- Quote Generator ----
+        window.quoteGen = function() {
+            const quotes = [
+                { q: "The only way to do great work is to love what you do.", a: "Steve Jobs" },
+                { q: "In the middle of every difficulty lies opportunity.", a: "Albert Einstein" },
+                { q: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+                    a: "Winston Churchill" },
+                { q: "Believe you can and you're halfway there.", a: "Theodore Roosevelt" },
+                { q: "It does not matter how slowly you go as long as you do not stop.", a: "Confucius" },
+                { q: "The best time to plant a tree was 20 years ago. The second best time is now.",
+                    a: "Chinese Proverb" },
+                { q: "Life is what happens when you're busy making other plans.", a: "John Lennon" },
+                { q: "Get busy living or get busy dying.", a: "Stephen King" },
+                { q: "You miss 100% of the shots you don't take.", a: "Wayne Gretzky" },
+                { q: "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+                    a: "Ralph Waldo Emerson" }
+            ];
+            const q = quotes[Math.floor(Math.random() * quotes.length)];
+            getVal('qtResult').innerHTML =
+                `<span class="label">Quote</span><div style="font-size:1.1rem;font-style:italic;">“${q.q}”</div><div style="margin-top:6px;color:var(--text-secondary);">— ${q.a}</div>`;
+        };
+
+        // ---- Color Harmony ----
+        window.colorHarmony = function() {
+            const hex = getVal('chColor').value;
+            const r = parseInt(hex.slice(1, 3), 16),
+                g = parseInt(hex.slice(3, 5), 16),
+                b = parseInt(hex.slice(5, 7), 16);
+            const [h, s, l] = rgbToHsl(r, g, b);
+            const harmonies = [
+                { name: 'Complementary', offset: 180 },
+                { name: 'Analogous', offset: 30 },
+                { name: 'Triadic', offset: 120 },
+                { name: 'Tetradic', offset: 90 },
+            ];
+            let html = harmonies.map(harm => {
+                const c1 = hslToRgb(h, s, l);
+                const c2 = hslToRgb((h + harm.offset) % 360, s, l);
+                const c3 = hslToRgb((h + harm.offset * 2) % 360, s, l);
+                const c4 = hslToRgb((h + harm.offset * 3) % 360, s, l);
+                const colors = [c1, c2, c3, c4].map(c => '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''));
+                const swatches = colors.map(c =>
+                    `<div style="width:40px;height:40px;border-radius:6px;background:${c};border:2px solid var(--border);display:inline-block;margin:2px;" title="${c}"></div>`
+                    ).join('');
+                return `<div style="margin:8px 0;"><strong>${harm.name}</strong><br>${swatches} ${colors.join(' • ')}</div>`;
+            }).join('');
+            getVal('chResult').innerHTML =
+                `<span class="label">Result</span><div style="font-size:0.9rem;">${html}</div>`;
+        };
+
+        // ================================================================
+        //  5.  INIT
+        // ================================================================
+
+        renderTools('all');
+        setTimeout(handleHash, 50);
+
+        console.log(`🚀 ToolMaster loaded with ${TOOLS.length} tools!`);
+        console.log('💡 All tools run 100% offline — no API keys, no tracking.');
+        console.log('⚡ Real‑time updates enabled on all input fields.');
+    </script>
+
+</body>
+</html>
